@@ -12,16 +12,16 @@ This is the public version of `railgun_private`, which contains more bells and w
 
 There are several main folders that make up this database:
 
-- `library`: My personal library of implementations. I use __Rust__, __C__, and __Python__ for each implementation, so there should be a bit of something for everyone.
+- `Library`: My personal library of implementations. I use __Rust__, __C__, and __Python__, so there should be a bit of something for everyone.
 
-- `reflections`: My philosophical musings on competitive programming. I take a rather unconventional approach on the activity, and this section contains thoughts and postmortems that come up from doing so.
+- `Reflections`: My philosophical musings on competitive programming. I take a rather unconventional approach on the activity, and this section contains thoughts and postmortems that come up from doing so.
 
-- `resources`: This is where I tinker around with my system for learning and improving in the mind sport. It highlights the iterative nature of my adventure, and it's where most of my internal debates revolve around.
+- `Resources`: This is where I tinker around with my system for learning and improving in the mind sport. It highlights the iterative nature of my adventure, and it's where most of my internal debates revolve around.
 
-- `scripts`: This contains programs that I use to carry out different chores when I play around. Like with `library`, I strive to provide clear and concise documentation for code in this section.
+- `Scripts`: This contains programs that I use to carry out different chores when I play around. Like with `Library`, I strive to provide clear and concise documentation for code in this section.
 
 ## Technicals
 
-I update this repo on the first day of each month. Each update is documented as a single bulky commit, but specific changes can be seen in the `history` folder.
+I update this repo twice a month: on the $\verb|1|^{\verb|st|}$ and on the $\verb|15|^{\verb|th|}$. Each update is documented by a single bulky commit, but specific changes can be seen in the `History` folder.
 
 All code here is free for use. Have fun!
