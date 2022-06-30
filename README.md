@@ -22,6 +22,6 @@ There are several main folders that make up this database:
 
 ## Technicals
 
-I update this repo twice a month: on the $\verb|1|^{\verb|st|}$ and on the $\verb|15|^{\verb|th|}$. Each update is documented by a single bulky commit, but specific changes can be seen in the `History` folder.
+I update this repo twice a month: on the 1st and on the 15th. Each update is documented by a single bulky commit, but specific changes can be seen in the `History` folder.
 
 All code here is free for use. Have fun!
