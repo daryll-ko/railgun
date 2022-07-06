@@ -22,4 +22,4 @@ There are several main folders that make up this database:
 
 ## Technicals
 
-This repo is a live mirror of the private version: whenever I update `railgun_private`, I run a program that updates this repo as well.
+This repo is a live mirror of the private version: whenever I update `railgun_private`, I run a program that updates this repo as well!
