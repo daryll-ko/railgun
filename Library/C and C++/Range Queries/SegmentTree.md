@@ -19,7 +19,7 @@ $$
 query(l, r) = \max(A[l], A[l + 1], \dots, A[r])
 $$
 
-if $M = (op, ID) = (\times, \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix})$, then
+if $M = (op, ID) = (\times, I_{2})$, then
 
 $$
 query(l, r) = A[l]~A[l + 1]~\dots~A[r]
