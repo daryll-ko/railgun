@@ -93,7 +93,7 @@ struct UnionFind {
 };
 ```
 
-## Examples
+## Example
 ```cpp
 UnionFind graph(5);
 graph.unite(0, 2);

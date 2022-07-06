@@ -102,7 +102,7 @@ impl UnionFind {
 }
 ```
 
-## Examples
+## Example
 ```rust
 let mut graph = UnionFind::new(5);
 graph.unite(0, 2);

@@ -24,7 +24,7 @@ def insertion_sort(a: List[int], n: int) -> None:
         a[j + 1] = value
 ```
 
-## Examples
+## Example
 ```python
 ratings = [9.25, 9.75, 9.5, 10, 9]
 insertion_sort(ratings, 5)

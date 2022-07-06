@@ -50,7 +50,7 @@ fn merge_sort(v: &[i64], answer: &mut usize) -> Vec<i64> {
 }
 ```
 
-## Examples
+## Example
 ```rust
 let pi = vec![31, 41, 59, 26, 5];
 let mut inversions = 0;

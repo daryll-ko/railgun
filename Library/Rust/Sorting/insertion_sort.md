@@ -23,7 +23,7 @@ fn insertion_sort(a: &mut [i32], n: usize) {
 }
 ```
 
-## Examples
+## Example
 ```rust
 let mut ratings = vec![9.25, 9.75, 9.5, 10., 9.];
 insertion_sort(&mut ratings, 5);

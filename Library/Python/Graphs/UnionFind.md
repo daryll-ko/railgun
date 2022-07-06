@@ -92,7 +92,7 @@ class UnionFind:
             self.largest_component = max(self.largest_component, self.size[a])
 ```
 
-## Examples
+## Example
 ```python
 graph = UnionFind(5)
 graph.unite(0, 2)

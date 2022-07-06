@@ -53,7 +53,7 @@ macro_rules! read_value {
 }
 ```
 
-## Examples
+## Example
 See the `proconio` crate's documentation linked below.
 
 ## Notes
