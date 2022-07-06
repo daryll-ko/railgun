@@ -12,7 +12,7 @@ This is the public version of `railgun_private`, which contains more bells and w
 
 There are several main folders that make up this database:
 
-- `Library`: My personal library of implementations. I use __Rust__, __C__, and __Python__, so there should be a bit of something for everyone.
+- `Library`: My personal library of implementations. I use __Rust__, __C/C++__, and __Python__, so there should be a bit of something for everyone.
 
 - `Reflections`: My philosophical musings on competitive programming. I take a rather unconventional approach on the activity, and this section contains thoughts and postmortems that come up from doing so.
 
