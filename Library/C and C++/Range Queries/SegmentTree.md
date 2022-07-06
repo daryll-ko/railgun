@@ -1,7 +1,7 @@
 # `SegmentTree`
 Implementation of an iterative [segment tree](https://en.wikipedia.org/wiki/Segment_tree).
 
-Suppose you have a [monoid](https://mathworld.wolfram.com/Monoid.html#:~:text=A%20monoid%20is%20a%20set,contain%20at%20least%20one%20element.) $M$ with operation $op$ and identity element $ID$. A segment tree allows us to answer queries about an array $A$ of $M$'s elements in the following form:
+Suppose we have a [monoid](https://mathworld.wolfram.com/Monoid.html#:~:text=A%20monoid%20is%20a%20set,contain%20at%20least%20one%20element.) $M$ with operation $op$ and identity element $ID$. A segment tree allows us to answer queries about an array $A$ of $M$'s elements in the form
 
 $$
 query(l, r) = op(A[l], A[l + 1], \dots, A[r]).
@@ -188,7 +188,6 @@ struct SegmentTree {
 
 ## Example
 ```
-
 ```
 
 ## References
