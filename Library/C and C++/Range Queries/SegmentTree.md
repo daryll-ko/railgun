@@ -41,7 +41,7 @@ Constructs a segment tree from the vector $v$ with length $n$.
 
 **Constraints**
 - $n \le 4 \times 10^{6}$
-- `T` is the type of element your monoid uses (e.g., `int64_t` for $M = (0, +)$)
+- `T` is the type of element your monoid uses (e.g., `int64_t` for $M = (0, +)$ )
 
 **Time Complexity**
 - $O(n)$
@@ -101,6 +101,9 @@ T query(int l, int r)
 ```
 
 Returns $op(v[l], v[l + 1], \dots, v[r])$.
+
+**Constraints**
+- $0 \le l \le r < n$
 
 **Time Complexity**
 - $O(\log n)$
