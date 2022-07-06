@@ -72,4 +72,4 @@ class SparseTable:
 
 ## Verification
 - [CSES Problem Set | Static Range Minimum Queries](https://cses.fi/problemset/task/1647/)
-- [Yosupo Library Checker | Static RMQ](https://judge.yosupo.jp/problem/staticrmq) ([submission link](https://judge.yosupo.jp/submission/94658)
+- [Library Checker | Static RMQ](https://judge.yosupo.jp/problem/staticrmq) ([submission link](https://judge.yosupo.jp/submission/94658)

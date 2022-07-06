@@ -159,4 +159,4 @@ struct FenwickTree {
 
 ## Verification
 - [CSES Problem Set | Dynamic Range Sum Queries](https://cses.fi/problemset/task/1648)
-- [Yosupo Library Checker | Point Add Range Sum](https://judge.yosupo.jp/problem/point_add_range_sum) ([submission link](https://judge.yosupo.jp/submission/94470))
+- [Library Checker | Point Add Range Sum](https://judge.yosupo.jp/problem/point_add_range_sum) ([submission link](https://judge.yosupo.jp/submission/94470))

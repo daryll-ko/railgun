@@ -23,10 +23,8 @@ struct custom_hash {
 
 ```
 
-## Notes
-
 ## References
 - [Blowing up unordered_map, and how to stop getting hacked on it](https://codeforces.com/blog/entry/62393)
 
 ## Verification
-- [Library Checker | Associative Array](https://judge.yosupo.jp/problem/associative_array) ([subission link](https://judge.yosupo.jp/submission/94673))
+- [Library Checker | Associative Array](https://judge.yosupo.jp/problem/associative_array) ([submission link](https://judge.yosupo.jp/submission/94673))
