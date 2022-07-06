@@ -28,7 +28,7 @@ void insertion_sort(int a[], int n) {
 long double ratings[5] = {9.25, 9.75, 9.5, 10, 9};
 insertion_sort(ratings, 5);
 for (long double rating : ratings) {
-	printf("%Lf", rating);
+	printf("%Lf ", rating);
 }
 // outputs: 9 9.25 9.5 9.75 10
 ```

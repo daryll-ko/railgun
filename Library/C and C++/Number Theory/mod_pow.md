@@ -25,7 +25,7 @@ long mod_pow(long a, long b, long m) {
 ```c
 const long MOD = 998244353;
 
-printf("%d", mod_pow(2022, 2022, MOD));
+printf("%d\n", mod_pow(2022, 2022, MOD));
 // outputs: 867641484
 ```
 

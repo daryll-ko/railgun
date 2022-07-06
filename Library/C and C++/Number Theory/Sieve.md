@@ -80,7 +80,6 @@ impl Sieve {
 
 ## Example
 ```rust
-
 ```
 
 ## Verification
