@@ -85,7 +85,7 @@ impl UnionFind {
         self.get_leader(a) == self.get_leader(b)
     }
     fn unite(&mut self, mut a: usize, mut b: usize) {
-	    if !same_leader(a, b) {
+	    if !self.same_leader(a, b) {
 	        a = self.get_leader(a);
 	        b = self.get_leader(b);
 	        if self.size[a] < self.size[b] {
@@ -119,3 +119,4 @@ println!("{}", graph.same_leader(3, 4));
 ## Verification
 - [CSES Problem Set | Road Reparation](https://cses.fi/problemset/task/1675/)
 - [CSES Problem Set | Road Construction](https://cses.fi/problemset/task/1676/)
+- [Library Checker | Unionfind](https://judge.yosupo.jp/problem/unionfind) ([submission link](https://judge.yosupo.jp/submission/94676))

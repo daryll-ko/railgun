@@ -110,3 +110,4 @@ printf("%s", graph.same_leader(0, 4) ? "true" : "false");
 ## Verification
 - [CSES Problem Set | Road Reparation](https://cses.fi/problemset/task/1675/)
 - [CSES Problem Set | Road Construction](https://cses.fi/problemset/task/1676/)
+- [Library Checker | Unionfind](https://judge.yosupo.jp/problem/unionfind) ([submission link](https://judge.yosupo.jp/submission/94675))
