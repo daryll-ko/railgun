@@ -85,19 +85,19 @@ impl UnionFind {
         self.get_leader(a) == self.get_leader(b)
     }
     fn unite(&mut self, mut a: usize, mut b: usize) {
-	    if !self.same_leader(a, b) {
-	        a = self.get_leader(a);
-	        b = self.get_leader(b);
-	        if self.size[a] < self.size[b] {
-	            let c = a;
-	            a = b;
-	            b = c;
-	        }
-	        self.size[a] += self.size[b];
-	        self.link[b] = a;
-	        self.number_of_components -= 1;
-	        self.largest_component = self.largest_component.max(self.size[a]);
-        }
+		if !self.same_leader(a, b) {
+			a = self.get_leader(a);
+			b = self.get_leader(b);
+			if self.size[a] < self.size[b] {
+				let c = a;
+				a = b;
+				b = c;
+			}
+			self.size[a] += self.size[b];
+			self.link[b] = a;
+			self.number_of_components -= 1;
+			self.largest_component = self.largest_component.max(self.size[a]);
+		}
     }
 }
 ```
