@@ -95,11 +95,20 @@ class UnionFind:
 ## Example
 ```python
 graph = UnionFind(5)
+# graph:  2   0
+#
+#         4   1   3
 graph.unite(0, 2)
 graph.unite(1, 3)
+# graph:  2———0
+#
+#         4   1———3
 print(graph.number_of_components)
 # outputs: 3
 graph.unite(1, 4)
+# graph:  2———0
+#
+#         4———1———3
 print(graph.same_leader(0, 4))
 # outputs: False
 print(graph.same_leader(3, 4))
