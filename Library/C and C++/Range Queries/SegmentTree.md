@@ -2,21 +2,29 @@
 Implementation of an iterative [segment tree](https://en.wikipedia.org/wiki/Segment_tree).
 
 Suppose you have a [monoid](https://mathworld.wolfram.com/Monoid.html#:~:text=A%20monoid%20is%20a%20set,contain%20at%20least%20one%20element.) $M$ with operation $op$ and identity element $ID$. A segment tree allows us to answer queries about an array $A$ of $M$'s elements in the following form:
+
 $$
 query(l, r) = op(A[l], A[l + 1], \dots, A[r])
 $$
+
 For example, if $M = (op, ID) = (+, 0)$, then
+
 $$
 query(l, r) = A[l] + A[l + 1] + \dots + A[r]
 $$
+
 if $M = (op, ID) = (\max, -\infty)$, then
+
 $$
 query(l, r) = \max(A[l], A[l + 1], \dots, A[r])
 $$
+
 if $M = (op, ID) = (\times, \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix})$, then
+
 $$
 query(l, r) = A[l]~A[l + 1]~\dots~A[r]
 $$
+
 A list of common pairs $(op, ID)$ is include in the **Code** section below for convenience.
 
 ## Methods
@@ -99,7 +107,7 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 
 ## Code
 ### Common $(op, ID)$ pairs
-| $op$                    | $ID$                                                  | time complexity                                    |
+| $op$                    | $ID$                                                  | Time Complexity                                    |
 | ----------------------- | ----------------------------------------------------- | -------------------------------------------------- |
 | $a + b$                 | $0$                                                   | $O(1)$                                             |
 | $ab$                    | $1$                                                   | $O(1)$                                             |
