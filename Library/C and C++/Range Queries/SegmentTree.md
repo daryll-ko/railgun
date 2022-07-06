@@ -24,7 +24,7 @@ A list of common pairs $(op, ID)$ is include in the **Code** section below for c
 ## Methods
 `add`, `update`, and `query` below assume that `op` runs in $O(1)$ time. If that's not the case, then just multiply their listed time complexities with `op`'s runtime.
 
-For example, if `op` is matrix multiplication, which runs in $O(k^{3})$ time, then `query` takes $O(k^{3}\log n)$ time instead of $O(\log n)$ time.
+For example, if `op` is matrix multiplication, which runs in $O(k^{3})$ time, then `add`, `update`, and `query` take $O(k^{3}\log n)$ time instead of $O(\log n)$ time.
 
 ### `SegmentTree`
 ```cpp
@@ -113,7 +113,6 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 | $\gcd(a, b)$            | 0                                                     | $O(1)$                                                   |
 | $a + b$ (strings)       | $\varepsilon$ (`""`)                                  | $O(len(a))$ (use `a += b` instead of `a = a + b`!) |
 | $a \times b$ (matrices) | $I_{k}$ ($k \times k$ identity matrix)                | $O(k^{3})$                                         |
-
 
 ```cpp
 template <class T>
