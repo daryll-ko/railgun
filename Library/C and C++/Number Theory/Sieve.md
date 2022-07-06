@@ -7,6 +7,8 @@ Implementation of the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Siev
 Sieve(int n)
 ```
 
+Initializes a new sieve for the positive integers $1$ to $n$.
+
 **Constraints**
 - $n \le 3 \times 10^{7}$
 
@@ -79,7 +81,13 @@ impl Sieve {
 ```
 
 ## Example
-```rust
+```cpp
+Sieve sieve(20);
+for (int p : sieve.primes) {
+	printf("%d ", p);
+}
+printf("\n");
+// outputs: 2 3 5 7 11 13 17 19
 ```
 
 ## Verification
