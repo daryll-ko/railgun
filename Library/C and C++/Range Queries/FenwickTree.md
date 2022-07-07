@@ -149,25 +149,33 @@ struct FenwickTree {
 ## Example
 ```cpp
 FenwickTree tree(vector<int>(8, 0), 8);
+
 printf("%d\n", tree.n);
 // outputs: 8
+
 tree.add(7, 11);
 tree.add(3, 14);
+
 printf("%d\n", tree.query(3, 7));
 //      i  |  3   4   5   6    7
 // tree[i] | 14 + 0 + 0 + 0 + 11 = 25
 // outputs: 25
+
 tree.add(4, 6);
 tree.update(3, 12);
+
 printf("%d\n", tree.query(3, 7));
 //      i  |  3   4   5   6    7
 // tree[i] | 12 + 6 + 0 + 0 + 11 = 29
 // outputs: 29
+
 printf("%d\n", tree.query(4));
 //      i  |  1   2    3   4
 // tree[i] |  0 + 0 + 12 + 6 = 18
 // outputs: 18
+
 tree.add(5, 7);
+
 printf("%d\n", tree.cumulative_lower_bound(20));
 //             i  |  1   2   3   4   5   6    7  8
 //        tree[i] |  0   0  12   6   7   0   11  0
