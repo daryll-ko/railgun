@@ -108,19 +108,24 @@ let mut graph = UnionFind::new(5);
 // graph:  2   0
 //
 //         4   1   3
+
 graph.unite(0, 2);
 graph.unite(1, 3);
 // graph:  2———0
 //
 //         4   1———3
+
 println!("{}", graph.number_of_components);
 // outputs: 3
+
 graph.unite(1, 4);
 // graph:  2———0
 //
 //         4———1———3
+
 println!("{}", graph.same_leader(0, 4));
 // outputs: false
+
 println!("{}", graph.same_leader(3, 4));
 // outputs: true
 ```
