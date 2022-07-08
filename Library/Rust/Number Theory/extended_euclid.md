@@ -9,9 +9,14 @@ fn extended_euclid(a: i64, b: i64) -> (i64, i64)
 
 Returns an integer pair $(x, y)$ such that $ax + by = \gcd(a, b)$.
 
-$x$ and $y$ satisfy the inequalities $|x| \le \left|\dfrac{b}{\gcd(a, b)}\right|$ and $|y| \le \left|\dfrac{a}{\gcd(a, b)}\right|$.
+$x$ and $y$ satisfy the inequalities
+
+$$
+|x| \le \left|\dfrac{b}{\gcd(a, b)}\right|,~|y| \le \left|\dfrac{a}{\gcd(a, b)}\right|.
+$$
 
 All solutions of the equation $ax + by = \gcd(a, b)$ are of the form
+
 $$
 \left(x - k \cdot \dfrac{b}{\gcd(a, b)},~y + k \cdot \dfrac{a}{\gcd(a, b)}\right).
 $$
