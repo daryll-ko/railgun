@@ -71,7 +71,22 @@ impl SparseTable {
 
 ## Example
 ```rust
+let v = vec![10, 2, 4, 6, 9, 1, 7, 5, 3, 8];
+let table = SparseTable::new(&v, 10);
 
+println!("{}", table.query(0, 3));
+//     i  |   0   1   2   3
+//   v[i] |  10   2   4   6
+// outputs: 2
+
+println!("{}", table.query(2, 7));
+//     i  |   2   3   4   5   6   7
+//   v[i] |   4   6   9   1   7   5
+// outputs: 1
+
+println!("{}", table.query(4, 4));
+// v[4] = 9
+// outputs: 9
 ```
 
 ## Notes
