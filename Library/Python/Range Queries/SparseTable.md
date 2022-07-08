@@ -30,6 +30,11 @@ Returns the minimum value among $v[l], v[l + 1], \dots, v[r]$.
 
 ## Code
 ```python
+from dataclasses import dataclass
+from typing import List
+```
+
+```python
 # returns the position of the most significant bit of n
 # (i.e., the largest i such that 2^i ≤ n)
 def msb(n: int) -> int:
