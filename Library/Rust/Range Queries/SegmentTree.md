@@ -99,7 +99,6 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 | $\min(a, b)$            | $\infty$ (maximum value of numerical data type used)  | $O(1)$                                             |
 | $\max(a, b)$            | $-\infty$ (minimum value of numerical data type used) | $O(1)$                                             |
 | $\gcd(a, b)$            | 0                                                     | $O(1)$                                                   |
-| $a + b$ (strings)       | $\varepsilon$ (`""`)                                  | $O(len(a))$ |
 | $a \times b$ (matrices) | $I_{k}$ ($k \times k$ identity matrix)                | $O(k^{3})$                                         |
 
 ```rust
