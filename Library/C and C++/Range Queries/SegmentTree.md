@@ -1,25 +1,25 @@
 # `SegmentTree`
 Implementation of an iterative [segment tree](https://en.wikipedia.org/wiki/Segment_tree).
 
-Suppose we have a [monoid](https://mathworld.wolfram.com/Monoid.html#:~:text=A%20monoid%20is%20a%20set,contain%20at%20least%20one%20element.) $M$ with operation $op$ and identity element $ID$. A segment tree allows us to answer queries about an array $A$ of $M$'s elements in the form
+Suppose we have a [monoid](https://mathworld.wolfram.com/Monoid.html#:~:text=A%20monoid%20is%20a%20set,contain%20at%20least%20one%20element.) $M$ with operation $op$ and identity element $id$. A segment tree allows us to answer queries about an array $A$ of $M$'s elements in the form
 
 $$
 query(l, r) = op(A[l], A[l + 1], \dots, A[r]).
 $$
 
-For example, if $M = (op, ID) = (+, 0)$, then
+For example, if $M = (op, id) = (+, 0)$, then
 
 $$
 query(l, r) = A[l] + A[l + 1] + \dots + A[r].
 $$
 
-if $M = (op, ID) = (\max, -\infty)$, then
+if $M = (op, id) = (\max, -\infty)$, then
 
 $$
 query(l, r) = \max(A[l], A[l + 1], \dots, A[r]).
 $$
 
-A list of common pairs $(op, ID)$ is include in the **Code** section below for convenience.
+A list of common pairs $(op, id)$ is include in the **Code** section below for convenience.
 
 ## Methods
 `add`, `update`, and `query` below assume that `op` runs in $O(1)$ time. If that's not the case, then just multiply their listed time complexities with `op`'s runtime.
@@ -103,9 +103,9 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 - $O(\log n)$
 
 ## Code
-**Common $(op, ID)$ pairs**
+**Common $(op, id)$ pairs**
 
-| $op$                    | $ID$                                                  | Time Complexity                                    |
+| $op$                    | $id$                                                  | Time Complexity                                    |
 | ----------------------- | ----------------------------------------------------- | -------------------------------------------------- |
 | $a + b$                 | $0$                                                   | $O(1)$                                             |
 | $ab$                    | $1$                                                   | $O(1)$                                             |
