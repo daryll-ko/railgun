@@ -71,7 +71,7 @@ Sets $v[i]$ to $x$.
 fn query_all(&self) -> T
 ```
 
-Returns $op(v[0], v[1], \dots, v[n - 1])$.
+Returns $op(v[0], v[1], \dots, v[n - 1])$. Equivalent to `query(0, n - 1)`.
 
 **Time Complexity**
 - $O(1)$
