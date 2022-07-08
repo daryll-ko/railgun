@@ -27,8 +27,10 @@ fn mod_pow(mut a: i64, mut b: i64, m: i64) -> i64 {
 ```rust
 static MOD: i64 = 998_244_353;
 
-println!("{}", mod_pow(2022, 2022, MOD));
-// outputs: 867641484
+println!("{}", mod_pow(10, 9, MOD));
+// 10^9 = 1_000_000_000
+// 1_000_000_000 = 1 * 998_244_353 + 1_755_647
+// outputs: 1755647
 ```
 
 ## Notes

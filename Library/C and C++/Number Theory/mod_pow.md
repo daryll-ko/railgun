@@ -26,7 +26,9 @@ long mod_pow(long a, long b, long m) {
 const long MOD = 998244353;
 
 printf("%d\n", mod_pow(2022, 2022, MOD));
-// outputs: 867641484
+// 10^9 = 1_000_000_000
+// 1_000_000_000 = 1 * 998_244_353 + 1_755_647
+// outputs: 1755647
 ```
 
 ## Notes
