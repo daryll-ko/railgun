@@ -83,4 +83,4 @@ printf("\n");
 
 ## Verification
 - [CSES Problem Set | Counting Coprime Pairs](https://cses.fi/problemset/task/2417/)
-- [Library Checker | Enumerate Primes](https://judge.yosupo.jp/problem/enumerate_primes) ([submission link](https://judge.yosupo.jp/submission/94186))
+- [Library Checker | Enumerate Primes](https://judge.yosupo.jp/problem/enumerate_primes) ([submission link](https://judge.yosupo.jp/submission/94663))
