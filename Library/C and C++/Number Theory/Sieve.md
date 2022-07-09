@@ -38,32 +38,28 @@ struct Sieve {
 ```
 
 ### With Möbius function
-```rust
+```cpp
 struct Sieve {
-    is_prime: Vec<bool>,
-    primes: Vec<usize>,
-    mobius: Vec<i64>,
-}
+    bitset<30000001> is_prime;
+    vector<int> primes;
+    vector<int> mobius;
 
-impl Sieve {
-    fn new(n: usize) -> Sieve {
-        let mut is_prime = vec![true; n + 1];
-        let mut primes = vec![];
-        let mut mobius = vec![0; n + 1];
-        is_prime[0] = false;
-        is_prime[1] = false;
+    Sieve(int n) {
+        is_prime.set();
+        mobius.resize(n + 1);
+        is_prime[0] = is_prime[1] = false;
         mobius[1] = 1;
-        for i in 2..=n {
-            if is_prime[i] {
-                primes.push(i);
+        for (int i = 2; i <= n; ++i) {
+            if (is_prime[i]) {
+                primes.push_back(i);
                 mobius[i] = -1;
             }
-            for &p in &primes {
-                if i * p > n {
+            for (int p : primes) {
+                if (i * p > n) {
                     break;
                 }
                 is_prime[i * p] = false;
-                if i % p == 0 {
+                if (i % p == 0) {
                     mobius[i * p] = 0;
                     break;
                 } else {
@@ -71,13 +67,8 @@ impl Sieve {
                 }
             }
         }
-        Sieve {
-            is_prime,
-            primes,
-            mobius,
-        }
     }
-}
+};
 ```
 
 ## Example
