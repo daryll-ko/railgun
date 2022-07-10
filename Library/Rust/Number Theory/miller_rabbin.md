@@ -31,7 +31,7 @@ fn mod_pow(mut a: i64, mut b: i64, m: i64) -> i64 {
 
 // returns the pair (s, d) such that n = 2^s × d and d is odd
 fn decompose(n: i64) -> (i64, i64) {
-    let s = (n & !(n - 1)).trailing_zeros() as i64;
+    let s = n.trailing_zeros() as i64;
     let d = n >> s;
     (s, d)
 }
