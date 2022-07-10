@@ -95,7 +95,7 @@ struct FenwickTree {
     int n;
     vector<T> tree;
 
-    FenwickTree(vector<T> v, int n) {
+    FenwickTree(vector<T> v, int n): n(n) {
         tree.assign(n + 1, 0);
         for (int i = 1; i <= n; ++i) {
             tree[i] = v[i - 1];
@@ -103,7 +103,6 @@ struct FenwickTree {
                 tree[i] += tree[i - j];
             }
         }
-        this->n = n;
     }
 
     void add(int i, T x) {
