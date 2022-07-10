@@ -19,7 +19,7 @@ Initializes a Fenwick tree with dimensions $[n_{1}, n_{2}, \dots, n_{d}]$.
 
 ### `add`
 ```cpp
-void add(int i, A... args)
+void add(int i, A... is)
 
 // read as: add(int i_1, int i_2, ..., int i_d, T x)
 ```
@@ -34,7 +34,7 @@ Increases the value of the point $(i_{1}, i_{2}, \dots, i_{d})$ by $x$.
 
 ### `query`
 ```cpp
-T query(int l, int r, A... args)
+T query(int l, int r, A... lrs)
 
 // read as: query(int l_1, int r_1, int l_2, int r_2, ..., int l_d, int r_d)
 ```
