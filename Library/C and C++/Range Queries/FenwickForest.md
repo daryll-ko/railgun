@@ -80,27 +80,27 @@ struct FenwickForest {
     }
 
     template <class... A>
-    void add(int i, A... args) {
+    void add(int i, A... is) {
         assert(1 <= i && i <= n);
         for (; i <= n; i += lsb(i)) {
-            forest[i].add(args...);
+            forest[i].add(is...);
         }
     }
 
     template <class... A>
-    T prefix_query(int r, A... args) {
+    T prefix_query(int r, A... lrs) {
         assert(0 <= r && r <= n);
         T sum = 0;
         for (; r > 0; r -= lsb(r)) {
-            sum += forest[r].query(args...);
+            sum += forest[r].query(lrs...);
         }
         return sum;
     }
 
     template <class... A>
-    T query(int l, int r, A... args) {
+    T query(int l, int r, A... lrs) {
         assert(1 <= l && l <= r && r <= n);
-        return prefix_query(r, args...) - prefix_query(l - 1, args...);
+        return prefix_query(r, lrs...) - prefix_query(l - 1, lrs...);
     }
 
 };
