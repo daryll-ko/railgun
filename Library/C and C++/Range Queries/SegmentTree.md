@@ -22,20 +22,19 @@ $$
 A list of common pairs $(op, id)$ is include in the **Code** section below for convenience.
 
 ## Methods
-`add`, `update`, and `query` below assume that `op` runs in $O(1)$ time. If that's not the case, then just multiply their listed time complexities with `op`'s runtime.
+`update` and `query` below assume that `op` runs in $O(1)$ time. If that's not the case, then just multiply their listed time complexities with `op`'s runtime.
 
-For example, if `op` is matrix multiplication, which runs in $O(k^{3})$ time, then `add`, `update`, and `query` take $O(k^{3}\log n)$ time instead of $O(\log n)$ time.
+For example, if `op` is matrix multiplication, which runs in $O(k^{3})$ time, then `update` and `query` take $O(k^{3}\log n)$ time instead of $O(\log n)$ time.
 
 ### `SegmentTree`
 ```cpp
-SegmentTree(vector<T> v, int n)
+SegmentTree(vector<T> v, int n, T op, F id)
 ```
 
-Constructs a segment tree from the vector $v$ with length $n$.
+Constructs a segment tree from the vector $v$ with length $n$, where $v$ has elements of the monoid $M = (op, id)$.
 
 **Constraints**
 - $n \le 4 \times 10^{6}$
-- `T` is the type of element your monoid uses (e.g., `int64_t` for $M = (0, +)$ )
 
 **Time Complexity**
 - $O(n)$
@@ -115,23 +114,17 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 | $a \times b$ (matrices) | $I_{k}$ ($k \times k$ identity matrix)                | $O(k^{3})$                                         |
 
 ```cpp
-template <class T>
+template <class T, class F = function<T(T, T)>>
 struct SegmentTree {
-    
-    // change ID and op as necessary:
-    const T ID = 2000000000;
-
-    T op(T a, T b) {
-        return min(a, b);
-    }
 
     int n, tree_offset;
     vector<T> tree;
+    T id;
+    F op;
 
-    SegmentTree(vector<T> v, int n) {
-        this->n = n;
+    SegmentTree(vector<T> v, int n, T id, F op): n(n), id(id), op(op) {
         for (tree_offset = 1; tree_offset < n; tree_offset *= 2);
-        tree.assign(2 * tree_offset, ID);
+        tree.assign(2 * tree_offset, id);
         for (int i = 0; i < n; ++i) {
             tree[i + tree_offset] = v[i];
         }
@@ -139,6 +132,7 @@ struct SegmentTree {
             pull(i);
         }
     }
+    
 
     void pull(int i) {
         tree[i] = op(tree[2 * i], tree[2 * i + 1]);
@@ -147,14 +141,6 @@ struct SegmentTree {
     T get_value(int i) {
         assert(0 <= i && i < n);
         return tree[i + tree_offset];
-    }
-
-    void add(int i, T x) {
-        assert(0 <= i && i < n);
-        tree[i += tree_offset] += x;
-        for (i /= 2; i > 0; i /= 2) {
-            pull(i);
-        }
     }
 
     void update(int i, T x) {
@@ -171,7 +157,7 @@ struct SegmentTree {
 
     T query(int l, int r) {
         assert(0 <= l && l <= r && r < n);
-        T left = ID, right = ID;
+        T left = id, right = id;
         for (l += tree_offset, r += tree_offset + 1; l < r; l /= 2, r /= 2) {
             if (l % 2 == 1) {
                 left = op(left, tree[l++]);
