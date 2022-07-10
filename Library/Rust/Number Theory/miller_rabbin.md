@@ -76,7 +76,8 @@ fn is_prime(n: i64) -> bool {
 ```rust
 let p = 33_478_742_787_241;
 println!("{}", is_prime(p));
-// outputs: true (...trust me, that's prime)
+// (...trust me, that's prime)
+// outputs: true
 
 let c = 52_069_326_617_183;
 println!("{}", is_prime(c));
