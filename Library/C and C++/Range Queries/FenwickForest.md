@@ -24,7 +24,7 @@ void add(int i, A... args)
 // read as: add(int i_1, int i_2, ..., int i_d, T x)
 ```
 
-Adds $x$ to the point $(i_{1}, i_{2}, \dots, i_{d})$.
+Increases the value of the point $(i_{1}, i_{2}, \dots, i_{d})$ by $x$.
 
 **Constraints**
 - $1 \le i_{k} \le n_{k}$ for $k = 1, 2, \dots, d$
@@ -39,7 +39,7 @@ T query(int l, int r, A... args)
 // read as: query(int l_1, int r_1, int l_2, int r_2, ..., int l_d, int r_d)
 ```
 
-Returns the sum of all points $(i_{1}, i_{2}, \dots, i_{d})$ that satisfy $l_{k} \le i_{k} \le r_{k}$ for $k = 1, 2, \dots, d$.
+Returns the sum of the values of all points $(i_{1}, i_{2}, \dots, i_{d})$ that satisfy $l_{k} \le i_{k} \le r_{k}$ for $k = 1, 2, \dots, d$.
 
 **Constraints**
 - $1 \le l_{k} \le r_{k} \le n_{k}$ for $k = 1, 2, \dots, d$
@@ -60,7 +60,7 @@ struct FenwickForest {
     vector<FenwickForest<T>> forest;
     T value = 0;
 
-	// 1 dimension
+    // 1 dimension
 	
     FenwickForest() {}
 
@@ -72,7 +72,7 @@ struct FenwickForest {
         return value;
     }
 
-	// > 1 dimension
+    // > 1 dimension
 
     template <class... A>
     FenwickForest(int n, A... ns): n(n) {
