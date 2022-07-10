@@ -31,7 +31,7 @@ fn mod_pow(mut a: i64, mut b: i64, m: i64) -> i64 {
 
 // returns the pair (s, d) such that n = 2^s × d and d is odd
 fn decompose(n: i64) -> (i64, i64) {
-    let s = n & !(n - 1);
+    let s = (n & !(n - 1)).trailing_zeros() as i64;
     let d = n >> s;
     (s, d)
 }
@@ -45,7 +45,7 @@ fn is_prime(n: i64) -> bool {
         false
     } else {
         let bases = [2, 325, 9_375, 28_178, 450_775, 9_780_504, 1_795_265_022];
-        let (s, d) = decompose(n);
+        let (s, d) = decompose(n - 1);
         for base in bases {
             let mut x = mod_pow(base, d, n);
             if x == 1 || x == n - 1 {
@@ -53,13 +53,10 @@ fn is_prime(n: i64) -> bool {
             }
             let mut proceed_to_next_base = false;
             let mut r = 1;
-            loop {
+            while r <= s - 1 {
                 x = mod_mul(x, x, n);
                 if x == n - 1 {
                     proceed_to_next_base = true;
-                    break;
-                }
-                if r == s - 1 {
                     break;
                 }
                 r += 1;
