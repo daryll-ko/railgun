@@ -13,6 +13,10 @@ Returns whether or not $n$ is prime.
 
 ## Code
 ```python
+from typing import Tuple
+```
+
+```python
 def decompose(n: int) -> Tuple[int, int]:
     s = len(bin(n)) - len(bin(n).rstrip('0'))
     d = n >> s
