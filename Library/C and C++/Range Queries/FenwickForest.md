@@ -1,5 +1,5 @@
 # `FenwickForest`
-Implementation of a multidimensional [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree).
+Implementation of a multidimensional [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree), which I call a Fenwick forest.
 
 ## Methods
 ### `FenwickForest`
@@ -9,7 +9,7 @@ FenwickForest(int n, A... ns)
 // read as: FenwickForest(int n_1, int n_2, ..., int n_d)
 ```
 
-Initializes a Fenwick tree with dimensions $[n_{1}, n_{2}, \dots, n_{d}]$.
+Initializes a Fenwick forest with dimensions $[n_{1}, n_{2}, \dots, n_{d}]$.
 
 **Constraints**
 - $n_{1} \times n_{2} \times \dots \times n_{d} \le 10^{8}$
