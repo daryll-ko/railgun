@@ -35,7 +35,7 @@ Constructs a segment tree from the vector $v$ with length $n$, where $v$ has ele
 
 **Constraints**
 - $n \le 4 \times 10^{6}$
-- `op` is of the form `|&a, &b| f(a, b)`
+- `op` is of the form `lambda a, b: f(a, b)`
 
 **Time Complexity**
 - $O(n)$
@@ -164,7 +164,25 @@ class SegmentTree(Generic[T]):
 ```
 
 ## Example
-```
+```python
+v = [2, 8, 7, 5, 6, 4, 1, 3, 10, 9]
+
+tree = SegmentTree(v, 10, -2_000_000_000, lambda a, b: max(a, b))
+# (op, id) = max(a, b), -∞
+
+tree.update(3, 11)
+print(tree.query(0, 4))
+#      i  |  0   1   2   3   4
+# tree[i] |  2   8   7  11   6
+#                        ^
+# outputs: 11
+
+tree.update(6, 314)
+print(tree.query_all())
+#      i  |  0   1   2   3   4   5    6   7   8   9
+# tree[i] |  2   8   7  11   6   4  314   3  10   9
+#                                     ^
+# outputs: 314
 ```
 
 ## References

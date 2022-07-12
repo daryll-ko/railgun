@@ -9,7 +9,7 @@ def is_prime(n: int) -> bool
 Returns whether or not $n$ is prime.
 
 **Time Complexity**
-- $O(\log n)$ (to be precise, $7 \log n$)
+- $O(\log n)$
 
 ## Code
 ```python
@@ -17,6 +17,7 @@ from typing import Tuple
 ```
 
 ```python
+# returns the pair (s, d) such that n = 2^s × d and d is odd
 def decompose(n: int) -> Tuple[int, int]:
     s = len(bin(n)) - len(bin(n).rstrip('0'))
     d = n >> s

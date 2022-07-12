@@ -171,7 +171,25 @@ impl<T: Clone, F: Fn(&T, &T) -> T> SegmentTree<T, F> {
 ```
 
 ## Example
-```
+```rust
+let v = vec![2, 8, 7, 5, 6, 4, 1, 3, 10, 9];
+
+let mut tree = SegmentTree::new(&v, 10, std::i32::MIN, |&a, &b| a.max(b));
+// (op, id) = max(a, b), -∞
+
+tree.update(3, 11);
+println!("{}", tree.query(0, 4));
+//      i  |  0   1   2   3   4
+// tree[i] |  2   8   7  11   6
+//                        ^
+// outputs: 11
+
+tree.update(6, 314);
+println!("{}", tree.query_all());
+//      i  |  0   1   2   3   4   5    6   7   8   9
+// tree[i] |  2   8   7  11   6   4  314   3  10   9
+//                                     ^
+// outputs: 314
 ```
 
 ## References

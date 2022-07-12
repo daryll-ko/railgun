@@ -9,7 +9,7 @@ fn is_prime(n: i64) -> bool
 Returns whether or not $n$ is prime.
 
 **Time Complexity**
-- $O(\log n)$ (to be precise, $7 \log n$)
+- $O(\log n)$
 
 ## Code
 ```rust

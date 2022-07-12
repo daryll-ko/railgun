@@ -59,8 +59,15 @@ fn get_inverse(a: i64, b: i64) -> i64 {
 ```
 
 ## Example
-```
+```rust
+let (x, y) = extended_euclid(7, 5);
+println!("7 * {} + 5 * {} = gcd(7, 5) = 1", x, y);
+// outputs: 7 * 2 + 5 * -3 = gcd(7, 5) = 1
 
+let x = get_inverse(5, 24);
+println!("{}", x)
+// 5 * 5 = 25 = 1 (mod 24)
+// outputs: 5
 ```
 
 ## References
