@@ -97,8 +97,8 @@ A list of pairs for common $m$ is given in the table below. $s(i)$ denotes the e
 | ------------ | ------------------------ | ------- | ------------------------------------ |
 | $\phi$       | Euler's totient function | $p - 1$ | $m(i) \times p$                      |
 | $\mu$        | Möbius function          | $-1$    | $0$                                  |
-| $\sigma_{0}$ | number of divisors       | $2$     | $m(i) \times \dfrac{s(i) + 1}{s(i)}$ |
-| $\sigma_{1}$  | sum of divisors          | $p + 1$ | $m(i) \times \dfrac{p^{s[i] + 1} - 1}{p^{s[i]} - 1}$                                      |
+| $\sigma_{0}$ | number of divisors       | $2$     | $m(i) \times \dfrac{s(i) + 2}{s(i) + 1}$ |
+| $\sigma_{1}$  | sum of divisors          | $p + 1$ | $m(i) \times \dfrac{p^{s[i] + 2} - 1}{p^{s[i] + 1} - 1}$                                      |
 
 ```cpp
 struct Sieve {
