@@ -135,11 +135,11 @@ impl<T: Clone> SegmentTree<T> {
         self.tree[i] = (self.op)(&self.tree[2 * i], &self.tree[2 * i + 1]);
     }
     fn get_value(&self, i: usize) -> T {
-	    assert!(i < self.n);
+        assert!(i < self.n);
         self.tree[i + self.tree_offset].clone()
     }
     fn update(&mut self, mut i: usize, x: T) {
-	    assert!(i < self.n);
+        assert!(i < self.n);
         self.tree[i + self.tree_offset] = x;
         i = (i + self.tree_offset) / 2;
         while i > 0 {
@@ -151,7 +151,7 @@ impl<T: Clone> SegmentTree<T> {
         self.tree[1].clone()
     }
     fn query(&self, mut l: usize, mut r: usize) -> T {
-	    assert!(l <= r && r < self.n);
+        assert!(l <= r && r < self.n);
         let mut left = self.id.clone();
         let mut right = self.id.clone();
         l += self.tree_offset;
