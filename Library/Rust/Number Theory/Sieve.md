@@ -17,6 +17,8 @@ Initializes a new sieve for the positive integers $1$ to $n$.
 
 ## Code
 ### Vanilla
+Runs in just under 10 seconds for $n \approx 5 \times 10^{8}$.
+
 ```rust
 struct Sieve {
     is_prime: Vec<bool>,
@@ -37,6 +39,60 @@ impl Sieve {
                 }
             }
         }
+        Sieve { is_prime, primes }
+    }
+}
+```
+
+### Segmented
+Fast version of Vanilla. Runs in just under 2 seconds for $n \approx 5 \times 10^{8}$.
+
+```rust
+struct Sieve {
+    is_prime: Vec<bool>,
+    primes: Vec<usize>,
+}
+
+impl Sieve {
+    fn new(n: usize) -> Sieve {
+        let mut is_prime = vec![false; n + 1];
+        let mut primes = if n >= 2 { vec![2] } else { vec![] };
+
+        let s = (n as f64).sqrt().floor() as usize;
+        let r = (n + 1) / 2;
+
+        let mut sieve = vec![false; s + 1];
+        let mut cp = vec![];
+
+        for i in (3..=s).step_by(2) {
+            if !sieve[i] {
+                cp.push((i, i * i / 2));
+                for j in ((i * i)..=s).step_by(2 * i) {
+                    sieve[j] = true;
+                }
+            }
+        }
+
+        // each block covers [l, l + s), which refers to the odd numbers in the range [l * 2 + 1, (l + s) * 2 + 1)
+        for l in (1..=r).step_by(s) {
+            let mut block = vec![false; s];
+            for (p, index) in &mut cp {
+                while *index < l + s {
+                    block[*index - l] = true;
+                    *index += *p;
+                }
+            }
+            for i in 0..s.min(r - l) {
+                if !block[i] {
+                    primes.push((l + i) * 2 + 1);
+                }
+            }
+        }
+
+        for &p in &primes {
+            is_prime[p] = true;
+        }
+
         Sieve { is_prime, primes }
     }
 }
@@ -97,4 +153,6 @@ println!();
 
 ## Verification
 - [CSES Problem Set | Counting Coprime Pairs](https://cses.fi/problemset/task/2417/)
-- [Library Checker | Enumerate Primes](https://judge.yosupo.jp/problem/enumerate_primes) ([submission link](https://judge.yosupo.jp/submission/94186))
+- [Library Checker | Enumerate Primes](https://judge.yosupo.jp/problem/enumerate_primes) 
+	- Vanilla: [submission link](https://judge.yosupo.jp/submission/94186)
+	- Segmented: [submission link](https://judge.yosupo.jp/submission/95500)
