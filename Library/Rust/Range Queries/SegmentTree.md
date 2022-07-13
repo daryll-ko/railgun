@@ -102,16 +102,16 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 | $a \times b$ (matrices) | $I_{k}$ ($k \times k$ identity matrix)                | $O(k^{3})$                                         |
 
 ```rust
-struct SegmentTree<T, F> {
+struct SegmentTree<T> {
     n: usize,
     tree_offset: usize,
     tree: Vec<T>,
     id: T,
-    op: F,
+    op: fn(&T, &T) -> T,
 }
- 
-impl<T: Clone, F: Fn(&T, &T) -> T> SegmentTree<T, F> {
-    fn new(v: &[T], n: usize, id: T, op: F) -> SegmentTree<T, F> {
+
+impl<T: Clone> SegmentTree<T> {
+    fn new(v: &[T], n: usize, id: T, op: fn(&T, &T) -> T) -> SegmentTree<T> {
         let mut tree_offset = 1;
         while tree_offset < n {
             tree_offset *= 2;
@@ -135,9 +135,11 @@ impl<T: Clone, F: Fn(&T, &T) -> T> SegmentTree<T, F> {
         self.tree[i] = (self.op)(&self.tree[2 * i], &self.tree[2 * i + 1]);
     }
     fn get_value(&self, i: usize) -> T {
+	    assert!(i < self.n);
         self.tree[i + self.tree_offset].clone()
     }
     fn update(&mut self, mut i: usize, x: T) {
+	    assert!(i < self.n);
         self.tree[i + self.tree_offset] = x;
         i = (i + self.tree_offset) / 2;
         while i > 0 {
@@ -149,6 +151,7 @@ impl<T: Clone, F: Fn(&T, &T) -> T> SegmentTree<T, F> {
         self.tree[1].clone()
     }
     fn query(&self, mut l: usize, mut r: usize) -> T {
+	    assert!(l <= r && r < self.n);
         let mut left = self.id.clone();
         let mut right = self.id.clone();
         l += self.tree_offset;
