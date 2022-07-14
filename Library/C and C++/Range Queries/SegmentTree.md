@@ -118,7 +118,7 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 template <class T, class F = function<T(T, T)>>
 struct SegmentTree {
 
-    int n, tree_offset;
+	int n, tree_offset;
     vector<T> tree;
     T id;
     F op;
@@ -134,7 +134,6 @@ struct SegmentTree {
         }
     }
     
-
     void pull(int i) {
         tree[i] = op(tree[2 * i], tree[2 * i + 1]);
     }
@@ -169,6 +168,7 @@ struct SegmentTree {
         }
         return op(left, right);
     }
+
 };
 ```
 
