@@ -29,9 +29,9 @@ fn mod_pow(mut a: i64, mut b: i64, m: i64) -> i64 {
     answer
 }
 
-// returns the pair (s, d) such that n = 2^s × d and d is odd
+// returns the pair (s, d) such that n = 2^s × d + 1 and d is odd
 fn decompose(n: i64) -> (i64, i64) {
-    let s = n.trailing_zeros() as i64;
+    let s = (n - 1).trailing_zeros() as i64;
     let d = n >> s;
     (s, d)
 }
@@ -48,7 +48,7 @@ fn is_prime(n: i64) -> bool {
         let (s, d) = decompose(n - 1);
         for base in bases {
             let mut x = mod_pow(base, d, n);
-            if x == 1 || x == n - 1 {
+            if x == 0 || x == 1 || x == n - 1 {
                 continue;
             }
             let mut proceed_to_next_base = false;

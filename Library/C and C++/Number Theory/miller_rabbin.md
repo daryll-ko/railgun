@@ -29,9 +29,9 @@ int64_t mod_pow(int64_t a, int64_t b, int64_t m) {
     return answer;
 }
 
-// returns the pair (s, d) such that n = 2^s × d and d is odd
+// returns the pair (s, d) such that n = 2^s × d + 1 and d is odd
 pair<int64_t, int64_t> decompose(int64_t n) {
-    int64_t s = __builtin_ctzll(n);
+    int64_t s = __builtin_ctzll(n - 1);
     int64_t d = n >> s;
     return make_pair(s, d);
 }
@@ -45,10 +45,10 @@ bool is_prime(int64_t n) {
         return false;
     } else {
         vector<int64_t> bases = {2, 325, 9'375, 28'178, 450'775, 9'780'504, 1'795'265'022};
-        auto [s, d] = decompose(n - 1);
+        auto [s, d] = decompose(n);
         for (int64_t base : bases) {
             int64_t x = mod_pow(base, d, n);
-            if (x == 1 || x == n - 1) {
+            if (x == 0 || x == 1 || x == n - 1) {
                 continue;
             }
             bool proceed_to_next_base = false;
