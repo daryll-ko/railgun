@@ -8,6 +8,15 @@ Hi there! Welcome to `railgun`, my competitive programming repository. It contai
 
 This is the public version of `railgun_private`, which contains more bells and whistles that cater more sensibly to my personal workflow.
 
+I officially go by the following handles:
+
+| Site             | Handle                                         |
+| ---------------- | ---------------------------------------------- |
+| AtCoder          | [ireina](https://atcoder.jp/users/ireina)      |
+| Kattis           | [ireina](https://open.kattis.com/users/ireina) |
+| CSES Problem Set | [elaina](https://cses.fi/user/70186)           |
+| Project Euler    | elaina                                               |
+
 ## Contents
 
 There are several main folders that make up this database:
