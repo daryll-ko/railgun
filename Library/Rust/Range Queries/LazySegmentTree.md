@@ -17,7 +17,7 @@ Here, $f$ must be part of a set of mappings $\mathcal{F}$ that has the following
 - $\mathcal{F}$ is closed under composition: if $f \in \mathcal{F}$ and $g \in \mathcal{F}$, then $f \circ g \in \mathcal{F}$.
 - $\mathcal{F}$ contains the identity mapping $f(x) = x$.
 
-For example, we can have $(op, id) = (+, 0)$ and $\mathcal{F} = \{f:=x+c, c \in \mathbb{R}\}$. $\mathcal{F}$ has the required properties because of the following:
+For example, we can have $(op, id) = (+, 0)$ and $\mathcal{F} = \{f:=x+c~|~c \in \mathbb{Z}\}$. $\mathcal{F}$ has the required properties because of the following:
 - if $f:=x+c \in \mathcal{F}$ and $g:=x+d \in \mathcal{F}$, then $f \circ g := x+(d+c) \in \mathcal{F}$
 - when $c = 0$, $f := x$ is the identity mapping.
 
@@ -30,9 +30,9 @@ For this implementation, the user needs to provide several values to initialize 
 - $op_{lazy}$ - the composition function of the set of mappings $\mathcal{F}$ (typed as `fn(&U, &U) → U`)
 - $mapping$ - a [functor](https://en.wikibooks.org/wiki/Haskell/The_Functor_class) that applies a function $f \in \mathcal{F}$ to a element of the monoid $M$ (typed as `fn(&U, &T) -> T`)
 
-It's very important to note that the type `U` here only contains **data** about the functions in $\mathcal{F}$. For example, if $f := x + c$, then `U` contains the value $c$, **not** the entire function.
+It's important to note that the type `U` here only contains **data** about the functions in $\mathcal{F}$. For example, if $f := x + c$, then `U` contains the value $c$, not the entire function.
 
-The code needed for all common pairs $(M, \mathcal{F})$ is provided in the `Code` section for (a lot of) convenience.
+The code needed for all common pairs $(M, \mathcal{F})$ is provided in the `Code` section for convenience.
 
 ## Methods
 ### `new`
@@ -119,6 +119,7 @@ Returns $op(a[l], a[l + 1], \dots, a[r])$.
 - $O(\log n)$
 
 ## Code
+### Struct code
 ```rust
 struct LazySegmentTree<T, U> {
     n: usize,
@@ -265,6 +266,37 @@ impl<T: Clone, U: Clone> LazySegmentTree<T, U> {
         (self.op)(&left, &right)
     }
 }
+```
+
+### Common setups
+Range add, range sum: $(M, \mathcal{F}) = ((+,0), \{f:=x+c~|~c \in \mathbb{Z}\})$
+
+```rust
+```
+
+Range add, range min: $(M, \mathcal{F}) = ((\min,\infty), \{f:=x+c~|~c \in \mathbb{Z}\})$
+
+```rust
+```
+
+Range add, range max: $(M, \mathcal{F}) = ((\max,-\infty), \{f:=x+c~|~c \in \mathbb{Z}\})$
+
+```rust
+```
+
+Range update, range sum: $(M, \mathcal{F}) = ((+,0), \{f:=c~|~c \in \mathbb{Z}\})$
+
+```rust
+```
+
+Range update, range min: $(M, \mathcal{F}) = ((\min,\infty), \{f:=c~|~c \in \mathbb{Z}\})$
+
+```rust
+```
+
+Range update, range max: $(M, \mathcal{F}) = ((\min,\infty), \{f:=c~|~c \in \mathbb{Z}\})$
+
+```rust
 ```
 
 ## Example
