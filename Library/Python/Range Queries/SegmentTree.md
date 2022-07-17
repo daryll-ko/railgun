@@ -34,15 +34,15 @@ def __init__(self, v: List[T], n: int, id: T, op: F) -> None
 Constructs a segment tree from the vector $v$ with length $n$, where $v$ has elements of the monoid $M = (op, id)$.
 
 **Constraints**
-- $n \le 4 \times 10^{6}$
+- $n \le 10^{8}$
 - `op` is of the form `lambda a, b: f(a, b)`
 
 **Time Complexity**
 - $O(n)$
 
-### `get_value`
+### `get`
 ```python
-def get_value(self, i: int) -> T
+def get(self, i: int) -> T
 ```
 
 Returns $v[i]$.
@@ -53,7 +53,7 @@ Returns $v[i]$.
 **Time Complexity**
 - $O(1)$
 
-### `update`
+### `set`
 ```python
 def update(self, i: int, x: T) -> None
 ```
@@ -133,7 +133,7 @@ class SegmentTree(Generic[T]):
     def pull(self, i: int) -> None:
         self.tree[i] = (self.op)(self.tree[2 * i], self.tree[2 * i + 1])
 
-    def get_value(self, i: int) -> T:
+    def get(self, i: int) -> T:
         return deepcopy(self.tree[i + self.tree_offset])
 
     def update(self, i: int, x: T) -> None:

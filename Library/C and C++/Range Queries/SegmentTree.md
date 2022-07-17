@@ -34,15 +34,15 @@ SegmentTree(vector<T> v, int n, T op, F id)
 Constructs a segment tree from the vector $v$ with length $n$, where $v$ has elements of the monoid $M = (op, id)$.
 
 **Constraints**
-- $n \le 4 \times 10^{6}$
+- $n \le 10^{8}$
 - `op` is of the form `[](int a, int b) { return f(a, b); }`
 
 **Time Complexity**
 - $O(n)$
 
-### `get_value`
+### `get`
 ```cpp
-T get_value(int i)
+T get(int i)
 ```
 
 Returns $v[i]$.
@@ -52,19 +52,6 @@ Returns $v[i]$.
 
 **Time Complexity**
 - $O(1)$
-
-### `add`
-```cpp
-void add(int i, T x)
-```
-
-Adds $x$ to $v[i]$.
-
-**Constraints**
-- $0 \le i < n$
-
-**Time Complexity**
-- $O(\log n)$
 
 ### `update`
 ```cpp
@@ -138,7 +125,7 @@ struct SegmentTree {
         tree[i] = op(tree[2 * i], tree[2 * i + 1]);
     }
 
-    T get_value(int i) {
+    T get(int i) {
         assert(0 <= i && i < n);
         return tree[i + tree_offset];
     }

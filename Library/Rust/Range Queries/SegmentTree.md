@@ -26,7 +26,7 @@ A list of common pairs $(op, id)$ is include in the **Code** section below for c
 
 For example, if `op` is matrix multiplication, which runs in $O(k^{3})$ time, then `update` and `query` take $O(k^{3}\log n)$ time instead of $O(\log n)$ time.
 
-### `SegmentTree`
+### `new`
 ```rust
 fn new(v: &[T], n: usize, id: T, op: F) -> SegmentTree<T, F>
 ```
@@ -34,15 +34,15 @@ fn new(v: &[T], n: usize, id: T, op: F) -> SegmentTree<T, F>
 Constructs a segment tree from the vector $v$ with length $n$, where $v$ has elements of the monoid $M = (op, id)$.
 
 **Constraints**
-- $n \le 4 \times 10^{6}$
+- $n \le 10^{8}$
 - `op` is of the form `|&a, &b| f(a, b)`
 
 **Time Complexity**
 - $O(n)$
 
-### `get_value`
+### `get`
 ```rust
-fn get_value(&self, i: usize) -> T
+fn get(&self, i: usize) -> T
 ```
 
 Returns $v[i]$.
@@ -53,9 +53,9 @@ Returns $v[i]$.
 **Time Complexity**
 - $O(1)$
 
-### `update`
+### `set`
 ```rust
-fn update(&mut self, mut i: usize, x: T)
+fn set(&mut self, mut i: usize, x: T)
 ```
 
 Sets $v[i]$ to $x$.
@@ -134,11 +134,11 @@ impl<T: Clone> SegmentTree<T> {
     fn pull(&mut self, i: usize) {
         self.tree[i] = (self.op)(&self.tree[2 * i], &self.tree[2 * i + 1]);
     }
-    fn get_value(&self, i: usize) -> T {
+    fn get(&self, i: usize) -> T {
         assert!(i < self.n);
         self.tree[i + self.tree_offset].clone()
     }
-    fn update(&mut self, mut i: usize, x: T) {
+    fn set(&mut self, mut i: usize, x: T) {
         assert!(i < self.n);
         self.tree[i + self.tree_offset] = x;
         i = (i + self.tree_offset) / 2;
@@ -180,14 +180,14 @@ let v = vec![2, 8, 7, 5, 6, 4, 1, 3, 10, 9];
 let mut tree = SegmentTree::new(&v, 10, std::i32::MIN, |&a, &b| a.max(b));
 // (op, id) = max(a, b), -∞
 
-tree.update(3, 11);
+tree.set(3, 11);
 println!("{}", tree.query(0, 4));
 //      i  |  0   1   2   3   4
 // tree[i] |  2   8   7  11   6
 //                        ^
 // outputs: 11
 
-tree.update(6, 314);
+tree.set(6, 314);
 println!("{}", tree.query_all());
 //      i  |  0   1   2   3   4   5    6   7   8   9
 // tree[i] |  2   8   7  11   6   4  314   3  10   9
