@@ -1,7 +1,122 @@
 # `LazySegmentTree`
 Implementation of an iterative [lazy segment tree](https://cp-algorithms.com/data_structures/segment_tree.html#range-updates-lazy-propagation).
 
+Suppose we have a monoid $M$ with operation $op$ and identity element $id$. A lazy segment tree allows us to perform updates on an array $A$ of $M$'s elements of the form
+
+$$
+update(l,r): a[l],a[l+1],\dots,a[r] \mapsto f(a[l]),f(a[l+1]),\dots,f(a[r])
+$$
+
+ and answer queries of the form
+
+$$
+query(l, r) = op(a[l],a[l+1],\dots,a[r]).
+$$
+
+Here, $f$ must be part of a set of mappings $\mathcal{F}$ that has the following properties:
+- $\mathcal{F}$ is closed under composition: if $f \in \mathcal{F}$ and $g \in \mathcal{F}$, then $f \circ g \in \mathcal{F}$.
+- $\mathcal{F}$ contains the identity mapping $f(x) = x$.
+
+For example, we can have $(op, id) = (+, 0)$ and $\mathcal{F} = \{f:=x+c, c \in \mathbb{R}\}$. $\mathcal{F}$ has the required properties because of the following:
+- if $f:=x+c \in \mathcal{F}$ and $g:=x+d \in \mathcal{F}$, then $f \circ g := x+(d+c) \in \mathcal{F}$
+- when $c = 0$, $f := x$ is the identity mapping.
+
+For this implementation, the user needs to provide several values to initialize a `LazySegmentTree`:
+- $v$ - the vector to operate on
+- $n$ - the size of $v$
+- $id$ - the identity element of the monoid $M$ (typed as `T`)
+- $op$ - the binary operator of the monoid $M$ (typed as `fn(&T, &T) -> T`)
+- $id_{lazy}$ - the identity mapping of the set of mappings $\mathcal{F}$ (typed as `U`)
+- $op_{lazy}$ - the composition function of the set of mappings $\mathcal{F}$ (typed as `fn(&U, &U) → U`)
+- $mapping$ - a [functor](https://en.wikibooks.org/wiki/Haskell/The_Functor_class) that applies a function $f \in \mathcal{F}$ to a element of the monoid $M$ (typed as `fn(&U, &T) -> T`)
+
+It's very important to note that the type `U` here only contains **data** about the functions in $\mathcal{F}$. For example, if $f := x + c$, then `U` contains the value $c$, **not** the entire function.
+
+The code needed for all common pairs $(M, \mathcal{F})$ is provided in the `Code` section for (a lot of) convenience.
+
 ## Methods
+### `new`
+```rust
+fn new(
+        v: &[T],
+        n: usize,
+        id: T,
+        op: fn(&T, &T) -> T,
+        id_lazy: U,
+        op_lazy: fn(&U, &U) -> U,
+        mapping: fn(&U, &T) -> T,
+    ) -> LazySegmentTree<T, U>
+```
+
+Constructs a lazy segment tree from the vector $v$ with length $n$.
+
+**Constraints**
+- $n \le 10^{8}$
+
+**Time Complexity**
+- $O(n)$
+
+### `get`
+```rust
+fn get(&mut self, mut i: usize) -> T
+```
+
+Returns $v[i]$.
+
+**Constraints**
+- $0 \le i < n$
+
+**Time Complexity**
+- $O(\log n)$
+
+### `set`
+```rust
+fn set(&mut self, mut i: usize, x: T)
+```
+
+Sets $v[i]$ to $x$.
+
+**Constraints**
+- $0 \le i < n$
+
+**Time Complexity**
+- $O(\log n)$
+
+### `update`
+```rust
+fn update(&mut self, mut l: usize, mut r: usize, y: U)
+```
+
+Sets $a[l], a[l+1], a[r]$ to $f(a[l]), f(a[l + 1]), \dots, f(a[r])$, where $f$ is defined by the function data provided by $y$.
+
+**Constraints**
+- $0 \le l \le r < n$
+
+**Time Complexity**
+- $O(\log n)$
+
+### `query_all`
+```rust
+fn query_all(&self) -> T
+```
+
+Returns $op(a[0], a[1], \dots, a[n - 1])$. Equivalent to `query(0, n - 1)`.
+
+**Time Complexity**
+- $O(1)$
+
+### `query`
+```rust
+fn query(&mut self, mut l: usize, mut r: usize) -> T
+```
+
+Returns $op(a[l], a[l + 1], \dots, a[r])$.
+
+**Constraints**
+- $0 \le l \le r < n$
+
+**Time Complexity**
+- $O(\log n)$
 
 ## Code
 ```rust
@@ -158,5 +273,6 @@ impl<T: Clone, U: Clone> LazySegmentTree<T, U> {
 ```
 
 ## References
+- [AtCoder Library](https://github.com/atcoder/ac-library/blob/master/atcoder/lazysegtree.hpp)
 
 ## Verification
