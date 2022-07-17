@@ -10,12 +10,16 @@ This is the public version of `railgun_private`, which contains more bells and w
 
 I officially go by the following handles:
 
+<div align="center">
+
 | Site             | Handle                                         |
 | ---------------- | ---------------------------------------------- |
 | AtCoder          | [ireina](https://atcoder.jp/users/ireina)      |
 | Kattis           | [ireina](https://open.kattis.com/users/ireina) |
 | CSES Problem Set | [elaina](https://cses.fi/user/70186)           |
 | Project Euler    | elaina                                               |
+
+</div>
 
 ## Contents
 
