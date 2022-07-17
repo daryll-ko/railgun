@@ -14,7 +14,7 @@ I officially go by the following handles:
 
 | Site             | Handle                                         |
 | ---------------- | ---------------------------------------------- |
-| AtCoder          | [ireina](https://atcoder.jp/users/ireina)      |
+| AtCoder          | [ireina](https://kenkoooo.com/atcoder/#/table/ireina)      |
 | Kattis           | [ireina](https://open.kattis.com/users/ireina) |
 | CSES Problem Set | [elaina](https://cses.fi/user/70186)           |
 | Project Euler    | elaina                                               |
