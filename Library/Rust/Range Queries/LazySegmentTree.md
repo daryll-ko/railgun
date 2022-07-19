@@ -87,7 +87,7 @@ Sets $v[i]$ to $x$.
 fn update(&mut self, mut l: usize, mut r: usize, y: U)
 ```
 
-Sets $a[l], a[l+1], a[r]$ to $f(a[l]), f(a[l + 1]), \dots, f(a[r])$, where $f$ is defined by the function data provided by $y$.
+Sets $a[l], a[l+1], \dots, a[r]$ to $f(a[l]), f(a[l + 1]), \dots, f(a[r])$, where $f$ is defined by the function data provided by $y$.
 
 **Constraints**
 - $0 \le l \le r < n$
