@@ -15,13 +15,13 @@ from typing import List
 
 ```python
 def insertion_sort(a: List[int], n: int) -> None:
-    for i in range(1, n):
-        value = a[i]
-        j = i - 1
-        while j >= 0 and a[j] > value:
-            a[j + 1] = a[j]
-            j -= 1
-        a[j + 1] = value
+	for i in range(1, n):
+		value = a[i]
+		j = i - 1
+		while j >= 0 and a[j] > value:
+			a[j + 1] = a[j]
+			j -= 1
+		a[j + 1] = value
 ```
 
 ## Example

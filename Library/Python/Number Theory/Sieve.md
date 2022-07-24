@@ -25,17 +25,17 @@ from dataclasses import dataclass
 @dataclass
 class Sieve:
 
-    def __init__(self, n: int) -> None:
-        is_prime = [True for _ in range(n + 1)]
-        primes = []
-        is_prime[0] = is_prime[1] = False
-        for i in range(2, n + 1):
-            if is_prime[i]:
-                primes.append(i)
-                for j in range(i * i, n + 1, i):
-                    is_prime[j] = False
-        self.is_prime = is_prime
-        self.primes = primes
+	def __init__(self, n: int) -> None:
+		is_prime = [True for _ in range(n + 1)]
+		primes = []
+		is_prime[0] = is_prime[1] = False
+		for i in range(2, n + 1):
+			if is_prime[i]:
+				primes.append(i)
+				for j in range(i * i, n + 1, i):
+					is_prime[j] = False
+		self.is_prime = is_prime
+		self.primes = primes
 ```
 
 ### Segmented
@@ -52,36 +52,36 @@ from dataclasses import dataclass
 @dataclass
 class Sieve:
 
-    def __init__(self, n: int) -> None:
-        # is_prime = [False for _ in range(n + 1)]
-        primes = [2] if n >= 2 else []
+	def __init__(self, n: int) -> None:
+		# is_prime = [False for _ in range(n + 1)]
+		primes = [2] if n >= 2 else []
 
-        s = int(math.floor(math.sqrt(n)))
-        r = (n + 1) // 2
+		s = int(math.floor(math.sqrt(n)))
+		r = (n + 1) // 2
 
-        sieve = [False for _ in range(s + 1)]
-        cp = []
+		sieve = [False for _ in range(s + 1)]
+		cp = []
 
-        for i in range(3, s + 1, 2):
-            if not sieve[i]:
-                cp.append((i, i * i // 2))
-                for j in range(i * i, s + 1, 2 * i):
-                    sieve[j] = True
+		for i in range(3, s + 1, 2):
+			if not sieve[i]:
+				cp.append((i, i * i // 2))
+				for j in range(i * i, s + 1, 2 * i):
+					sieve[j] = True
 
-        for l in range(1, r + 1, s):
-            block = [False for _ in range(s)]
-            for i in range(len(cp)):
-                p, index = cp[i]
-                while index < l + s:
-                    block[index - l] = True
-                    index += p
-                cp[i] = (p, index)
-            for i in range(min(s, r - l)):
-                if not block[i]:
-                    primes.append((l + i) * 2 + 1)
+		for l in range(1, r + 1, s):
+			block = [False for _ in range(s)]
+			for i in range(len(cp)):
+				p, index = cp[i]
+				while index < l + s:
+					block[index - l] = True
+					index += p
+				cp[i] = (p, index)
+			for i in range(min(s, r - l)):
+				if not block[i]:
+					primes.append((l + i) * 2 + 1)
 
-        # self.is_prime = is_prime
-        self.primes = primes
+		# self.is_prime = is_prime
+		self.primes = primes
 ```
 
 ### Multiplicative
@@ -108,39 +108,39 @@ from dataclasses import dataclass
 @dataclass
 class Sieve:
 
-    def __init__(self, n: int) -> None:
-        is_prime = [True for _ in range(n + 1)]
-        primes = []
-        m = [0 for _ in range(n + 1)]
-        s = [0 for _ in range(n + 1)]
-        is_prime[0] = is_prime[1] = False
-        m[1] = 1
-        for i in range(2, n + 1):
-            if is_prime[i]:
-                primes.append(i)
-                m[i] = # fp(i) —> change as necessary
-                s[i] = 1
-            for p in primes:
-                if i * p > n:
-                    break
-                is_prime[i * p] = False
-                if i % p == 0:
-                    m[i * p] = # fip(i) —> change as necessary
-                    s[i * p] = s[i] + 1
-                    break
-                else:
-                    m[i * p] = m[i] * m[p]
-                    s[i * p] = 1
-        self.is_prime = is_prime
-        self.primes = primes
-        self.m = m
+	def __init__(self, n: int) -> None:
+		is_prime = [True for _ in range(n + 1)]
+		primes = []
+		m = [0 for _ in range(n + 1)]
+		s = [0 for _ in range(n + 1)]
+		is_prime[0] = is_prime[1] = False
+		m[1] = 1
+		for i in range(2, n + 1):
+			if is_prime[i]:
+				primes.append(i)
+				m[i] = # fp(i) —> change as necessary
+				s[i] = 1
+			for p in primes:
+				if i * p > n:
+					break
+				is_prime[i * p] = False
+				if i % p == 0:
+					m[i * p] = # fip(i) —> change as necessary
+					s[i * p] = s[i] + 1
+					break
+				else:
+					m[i * p] = m[i] * m[p]
+					s[i * p] = 1
+		self.is_prime = is_prime
+		self.primes = primes
+		self.m = m
 ```
 
 ## Example
 ```python
 sieve = Sieve(20)
 for p in sieve.primes:
-    print(p, end=' ')
+	print(p, end=' ')
 print()
 # outputs: 2 3 5 7 11 13 17 19
 ```

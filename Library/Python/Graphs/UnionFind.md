@@ -63,33 +63,33 @@ from dataclasses import dataclass
 @dataclass
 class UnionFind:
 
-    def __init__(self, n: int) -> None:
-        self.link = list(range(n))
-        self.size = [1 for _ in range(n)]
-        self.number_of_components = n
-        self.largest_component = 1
+	def __init__(self, n: int) -> None:
+		self.link = list(range(n))
+		self.size = [1 for _ in range(n)]
+		self.number_of_components = n
+		self.largest_component = 1
 
-    def get_leader(self, i: int) -> int:
-        if i == self.link[i]:
-            return i
-        else:
-            answer = self.get_leader(self.link[i])
-            self.link[i] = answer
-            return answer
+	def get_leader(self, i: int) -> int:
+		if i == self.link[i]:
+			return i
+		else:
+			answer = self.get_leader(self.link[i])
+			self.link[i] = answer
+			return answer
 
-    def same_leader(self, a: int, b: int) -> bool:
-        return self.get_leader(a) == self.get_leader(b)
+	def same_leader(self, a: int, b: int) -> bool:
+		return self.get_leader(a) == self.get_leader(b)
 
-    def unite(self, a: int, b: int) -> None:
-        if not self.same_leader(a, b):
-            a = self.get_leader(a)
-            b = self.get_leader(b)
-            if self.size[a] < self.size[b]:
-                a, b = b, a
-            self.size[a] += self.size[b]
-            self.link[b] = a
-            self.number_of_components -= 1
-            self.largest_component = max(self.largest_component, self.size[a])
+	def unite(self, a: int, b: int) -> None:
+		if not self.same_leader(a, b):
+			a = self.get_leader(a)
+			b = self.get_leader(b)
+			if self.size[a] < self.size[b]:
+				a, b = b, a
+			self.size[a] += self.size[b]
+			self.link[b] = a
+			self.number_of_components -= 1
+			self.largest_component = max(self.largest_component, self.size[a])
 ```
 
 ## Example

@@ -38,33 +38,33 @@ from typing import List
 # returns the position of the most significant bit of n
 # (i.e., the largest i such that 2^i ≤ n)
 def msb(n: int) -> int:
-    exponent = 0
-    while (1 << exponent) <= n:
-        exponent += 1
-    return exponent - 1
+	exponent = 0
+	while (1 << exponent) <= n:
+		exponent += 1
+	return exponent - 1
 
 
 @dataclass
 class SparseTable:
 
-    def __init__(self, v: List[int], n: int):
-        m = msb(n)
-        table = [[0 for _ in range(n)] for _ in range(m + 1)]
-        for j in range(n):
-            table[0][j] = v[j]
-        for i in range(1, m + 1):
-            for j in range(n):
-                table[i][j] = table[i - 1][j]
-                if j + (1 << (i - 1)) < n:
-                    table[i][j] = min(
-                        table[i][j], table[i - 1][j + (1 << (i - 1))]
-                    )
-        self.table = table
+	def __init__(self, v: List[int], n: int):
+		m = msb(n)
+		table = [[0 for _ in range(n)] for _ in range(m + 1)]
+		for j in range(n):
+			table[0][j] = v[j]
+		for i in range(1, m + 1):
+			for j in range(n):
+				table[i][j] = table[i - 1][j]
+				if j + (1 << (i - 1)) < n:
+					table[i][j] = min(
+						table[i][j], table[i - 1][j + (1 << (i - 1))]
+					)
+		self.table = table
 
-    def query(self, l: int, r: int) -> int:
-        b = msb(r - l + 1)
-        answer = min(self.table[b][l], self.table[b][r + 1 - (1 << b)])
-        return answer
+	def query(self, l: int, r: int) -> int:
+		b = msb(r - l + 1)
+		answer = min(self.table[b][l], self.table[b][r + 1 - (1 << b)])
+		return answer
 ```
 
 ## Example

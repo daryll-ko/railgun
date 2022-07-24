@@ -94,55 +94,55 @@ from typing import List
 
 ```python
 def lsb(n: int) -> int:
-    return n & -n
+	return n & -n
 
 
 @dataclass
 class FenwickTree:
 
-    def __init__(self, v: List[int], n: int) -> None:
-        tree = [0 for _ in range(n + 1)]
-        for i in range(1, n + 1):
-            tree[i] = v[i - 1]
-            j = lsb(i) >> 1
-            while j > 0:
-                tree[i] += tree[i - j]
-                j >>= 1
-        self.tree = tree
-        self.n = n
+	def __init__(self, v: List[int], n: int) -> None:
+		tree = [0 for _ in range(n + 1)]
+		for i in range(1, n + 1):
+			tree[i] = v[i - 1]
+			j = lsb(i) >> 1
+			while j > 0:
+				tree[i] += tree[i - j]
+				j >>= 1
+		self.tree = tree
+		self.n = n
 
-    def add(self, i: int, x: int) -> None:
-        assert 1 <= i <= self.n
-        while i <= self.n:
-            self.tree[i] += x
-            i += lsb(i)
+	def add(self, i: int, x: int) -> None:
+		assert 1 <= i <= self.n
+		while i <= self.n:
+			self.tree[i] += x
+			i += lsb(i)
 
-    def update(self, i: int, x: int) -> None:
-        assert 1 <= i <= self.n
-        previous_value = self.query(i, i)
-        self.add(i, x - previous_value)
+	def update(self, i: int, x: int) -> None:
+		assert 1 <= i <= self.n
+		previous_value = self.query(i, i)
+		self.add(i, x - previous_value)
 
-    def prefix_query(self, r: int) -> int:
-        assert 0 <= r <= self.n
-        sum = 0
-        while r > 0:
-            sum += self.tree[r]
-            r -= lsb(r)
-        return sum
+	def prefix_query(self, r: int) -> int:
+		assert 0 <= r <= self.n
+		sum = 0
+		while r > 0:
+			sum += self.tree[r]
+			r -= lsb(r)
+		return sum
 
-    def query(self, l: int, r: int) -> int:
-        assert 1 <= l <= r <= self.n
-        return self.prefix_query(r) - self.prefix_query(l - 1)
+	def query(self, l: int, r: int) -> int:
+		assert 1 <= l <= r <= self.n
+		return self.prefix_query(r) - self.prefix_query(l - 1)
 
-    def cumulative_lower_bound(self, sum: int) -> int:
-        position = 0
-        power = 1 << 23
-        while power > 0:
-            if position + power <= self.n and self.tree[position + power] < sum:
-                position += power
-                sum -= self.tree[position]
-            power >>= 1
-        return position + 1
+	def cumulative_lower_bound(self, sum: int) -> int:
+		position = 0
+		power = 1 << 23
+		while power > 0:
+			if position + power <= self.n and self.tree[position + power] < sum:
+				position += power
+				sum -= self.tree[position]
+			power >>= 1
+		return position + 1
 ```
 
 ## Example
