@@ -20,12 +20,29 @@ Constructs the suffix automaton for the given string $s$.
 i64 distinct_substrings()
 ```
 
-Returns the number of distinct substrings of $s$ including the empty string $\varepsilon$.
+Returns the number of distinct substrings of $s$ (including the empty string $\varepsilon$).
 
 **Time Complexity**
 - $O(|s|)$
 
+### `kth_substring`
+```cpp
+string kth_substring(i64 k)
+```
+
+Returns the $k^{\text{th}}$ lexicographically smallest **distinct** substring of $s$ (where the smallest substring is the empty string $\varepsilon$).
+
+**Constraints**
+- $1 \le k \le \verb|distinct_substrings(|s\verb|)|$
+
+**Time Complexity**
+- $O(|t|)$, where $t$ is the answer
+
 ## Code
+```cpp
+using i64 = int64_t;
+```
+
 ```cpp
 struct SuffixAutomaton {
 	int n = 1;
@@ -101,8 +118,34 @@ struct SuffixAutomaton {
 	}
 
 	i64 distinct_substrings() {
-		dfs(0);
+		if (!visited[0]) {
+			dfs(0);
+		}
 		return paths_starting_at[0];
+	}
+
+	string kth_substring(i64 k) {
+		if (!visited[0]) {
+			dfs(0);
+		}
+		string answer = "";
+		int u = 0;
+		while (k > 1) {
+			--k;
+			for (int i = 0; i < 26; ++i) {
+				if (next[u].count((char)('a' + i))) {
+					int v = next[u][(char)('a' + i)];
+					if (paths_starting_at[v] < k) {
+						k -= paths_starting_at[v];
+					} else {
+						answer += (char)('a' + i);
+						u = v;
+						break;
+					}
+				}
+			}
+		}
+		return answer;
 	}
 };
 ```
@@ -112,8 +155,10 @@ struct SuffixAutomaton {
 
 ```
 
-## Notes
-
 ## References
+- [Benjamin Qi's implementation](https://github.com/bqi343/USACO/blob/master/Implementations/content/strings%20(14)/Heavy/SuffixAutomaton.h)
+- [Suffix Automaton | Algorithms for Competitive Programming](https://cp-algorithms.com/string/suffix-automaton.html)
 
 ## Verification
+- [CSES Problem Set | Distinct Substrings](https://cses.fi/problemset/task/2105)
+- [CSES Problem Set | Substring Order I](https://cses.fi/problemset/task/2108)
