@@ -34,7 +34,7 @@ for (long double rating : ratings) {
 ```
 
 ## Notes
-- This is just for demonstration purposes; please don't use this for actual sorting!
+- this is just for demonstration purposes; please don't use this for actual sorting!
 
 ## References
 - [Introduction to Algorithms, 4th Edition](https://mitpress.mit.edu/books/introduction-algorithms-fourth-edition)
