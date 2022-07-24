@@ -52,58 +52,58 @@ Returns the sum of the values of all points $(i_{1}, i_{2}, \dots, i_{d})$ that 
 ## Code
 ```cpp
 int lsb(int n) {
-    return n & -n;
+	return n & -n;
 }
 
 template <class T>
 struct FenwickForest {
 
-    int n;
-    vector<FenwickForest<T>> forest;
-    T value = 0;
+	int n;
+	vector<FenwickForest<T>> forest;
+	T value = 0;
 
-    // 1 dimension
+	// 1 dimension
 	
-    FenwickForest() {}
+	FenwickForest() {}
 
-    void add(T x) {
-        value += x;
-    }
+	void add(T x) {
+		value += x;
+	}
 
-    T query() {
-        return value;
-    }
+	T query() {
+		return value;
+	}
 
-    // > 1 dimension
+	// > 1 dimension
 
-    template <class... A>
-    FenwickForest(int n, A... ns): n(n) {
-        forest.resize(n + 1, FenwickForest<T>(ns...));
-    }
+	template <class... A>
+	FenwickForest(int n, A... ns): n(n) {
+		forest.resize(n + 1, FenwickForest<T>(ns...));
+	}
 
-    template <class... A>
-    void add(int i, A... is) {
-        assert(1 <= i && i <= n);
-        for (; i <= n; i += lsb(i)) {
-            forest[i].add(is...);
-        }
-    }
+	template <class... A>
+	void add(int i, A... is) {
+		assert(1 <= i && i <= n);
+		for (; i <= n; i += lsb(i)) {
+			forest[i].add(is...);
+		}
+	}
 
-    template <class... A>
-    T prefix_query(int r, A... lrs) {
-        assert(0 <= r && r <= n);
-        T sum = 0;
-        for (; r > 0; r -= lsb(r)) {
-            sum += forest[r].query(lrs...);
-        }
-        return sum;
-    }
+	template <class... A>
+	T prefix_query(int r, A... lrs) {
+		assert(0 <= r && r <= n);
+		T sum = 0;
+		for (; r > 0; r -= lsb(r)) {
+			sum += forest[r].query(lrs...);
+		}
+		return sum;
+	}
 
-    template <class... A>
-    T query(int l, int r, A... lrs) {
-        assert(1 <= l && l <= r && r <= n);
-        return prefix_query(r, lrs...) - prefix_query(l - 1, lrs...);
-    }
+	template <class... A>
+	T query(int l, int r, A... lrs) {
+		assert(1 <= l && l <= r && r <= n);
+		return prefix_query(r, lrs...) - prefix_query(l - 1, lrs...);
+	}
 
 };
 ```

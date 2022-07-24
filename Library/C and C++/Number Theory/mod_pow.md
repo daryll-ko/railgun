@@ -13,9 +13,9 @@ Given $a$, $b$, and $m$, computes $a^{b}~(\text{mod}~m)$.
 long mod_pow(long a, long b, long m) {
   long answer = 1;
   for (; b > 0; b /= 2, a = (a * a) % m) {
-    if (b % 2 == 1) {
-      answer = (answer * a) % m;
-    }
+	if (b % 2 == 1) {
+	  answer = (answer * a) % m;
+	}
   }
   return answer;
 }

@@ -87,61 +87,61 @@ If we treat $v$ as a multiset $S$ which contains the counts of numbers $1$ throu
 ## Code
 ```cpp
 int lsb(int n) {
-    return n & -n;
+	return n & -n;
 }
 
 template <class T>
 struct FenwickTree {
-    int n;
-    vector<T> tree;
+	int n;
+	vector<T> tree;
 
-    FenwickTree(vector<T> v, int n): n(n) {
-        tree.assign(n + 1, 0);
-        for (int i = 1; i <= n; ++i) {
-            tree[i] = v[i - 1];
-            for (int j = lsb(i) >> 1; j > 0; j >>= 1) {
-                tree[i] += tree[i - j];
-            }
-        }
-    }
+	FenwickTree(vector<T> v, int n): n(n) {
+		tree.assign(n + 1, 0);
+		for (int i = 1; i <= n; ++i) {
+			tree[i] = v[i - 1];
+			for (int j = lsb(i) >> 1; j > 0; j >>= 1) {
+				tree[i] += tree[i - j];
+			}
+		}
+	}
 
-    void add(int i, T x) {
-        assert(1 <= i && i <= n);
-        for (; i <= n; i += lsb(i)) {
-            tree[i] += x;
-        }
-    }
+	void add(int i, T x) {
+		assert(1 <= i && i <= n);
+		for (; i <= n; i += lsb(i)) {
+			tree[i] += x;
+		}
+	}
 
-    void update(int i, T x) {
-        assert(1 <= i && i <= n);
-        T previous_value = query(i, i);
-        add(i, x - previous_value);
-    }
+	void update(int i, T x) {
+		assert(1 <= i && i <= n);
+		T previous_value = query(i, i);
+		add(i, x - previous_value);
+	}
 
-    T query(int r) {
-        assert(0 <= r && r <= n);
-        T sum = 0;
-        for (; r > 0; r -= lsb(r)) {
-            sum += tree[r];
-        }
-        return sum;
-    }
+	T query(int r) {
+		assert(0 <= r && r <= n);
+		T sum = 0;
+		for (; r > 0; r -= lsb(r)) {
+			sum += tree[r];
+		}
+		return sum;
+	}
 
-    T query(int l, int r) {
-        assert(1 <= l && l <= r && r <= n);
-        return query(r) - query(l - 1);
-    }
+	T query(int l, int r) {
+		assert(1 <= l && l <= r && r <= n);
+		return query(r) - query(l - 1);
+	}
 
-    int cumulative_lower_bound(T sum) {
-        int position = 0;
-        for (int power = 1 << 23; power > 0; power >>= 1) {
-            if (position + power <= n && tree[position + power] < sum) {
-                position += power;
-                sum -= tree[position];
-            }
-        }
-        return position + 1;
-    }
+	int cumulative_lower_bound(T sum) {
+		int position = 0;
+		for (int power = 1 << 23; power > 0; power >>= 1) {
+			if (position + power <= n && tree[position + power] < sum) {
+				position += power;
+				sum -= tree[position];
+			}
+		}
+		return position + 1;
+	}
 };
 ```
 

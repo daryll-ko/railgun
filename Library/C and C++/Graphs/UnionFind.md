@@ -57,39 +57,39 @@ Unites the components of vertices $a$ and $b$. Nothing happens if $a$ and $b$ ar
 ## Code
 ```cpp
 struct UnionFind {
-    vector<int> link;
-    vector<int> size;
-    int number_of_components;
-    int largest_component;
+	vector<int> link;
+	vector<int> size;
+	int number_of_components;
+	int largest_component;
 
-    UnionFind(int n) {
-        link = vector<int>(n);
-        iota(link.begin(), link.end(), 0);
-        size = vector<int>(n, 1);
-        number_of_components = n;
-        largest_component = 1;
-    }
+	UnionFind(int n) {
+		link = vector<int>(n);
+		iota(link.begin(), link.end(), 0);
+		size = vector<int>(n, 1);
+		number_of_components = n;
+		largest_component = 1;
+	}
 
-    int get_leader(int i) {
-        return i == link[i] ? i : link[i] = get_leader(link[i]);
-    }
+	int get_leader(int i) {
+		return i == link[i] ? i : link[i] = get_leader(link[i]);
+	}
 
-    bool same_leader(int a, int b) {
-        return get_leader(a) == get_leader(b);
-    }
+	bool same_leader(int a, int b) {
+		return get_leader(a) == get_leader(b);
+	}
 
-    void unite(int a, int b) {
-        if (!same_leader(a, b)) {
-            a = get_leader(a), b = get_leader(b);
-            if (size[a] < size[b]) {
-                swap(a, b);
-            }
-            size[a] += size[b];
-            link[b] = a;
-            number_of_components--;
-            largest_component = max(largest_component, size[a]);
-        }
-    }
+	void unite(int a, int b) {
+		if (!same_leader(a, b)) {
+			a = get_leader(a), b = get_leader(b);
+			if (size[a] < size[b]) {
+				swap(a, b);
+			}
+			size[a] += size[b];
+			link[b] = a;
+			number_of_components--;
+			largest_component = max(largest_component, size[a]);
+		}
+	}
 };
 ```
 

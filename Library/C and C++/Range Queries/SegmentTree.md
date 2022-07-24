@@ -109,55 +109,55 @@ template <class T, class F = function<T(T, T)>>
 struct SegmentTree {
 
 	int n, tree_offset;
-    vector<T> tree;
-    T id;
-    F op;
+	vector<T> tree;
+	T id;
+	F op;
 
-    SegmentTree(vector<T> v, int n, T id, F op): n(n), id(id), op(op) {
-        for (tree_offset = 1; tree_offset < n; tree_offset *= 2);
-        tree.assign(2 * tree_offset, id);
-        for (int i = 0; i < n; ++i) {
-            tree[i + tree_offset] = v[i];
-        }
-        for (int i = tree_offset - 1; i >= 1; --i) {
-            pull(i);
-        }
-    }
-    
-    void pull(int i) {
-        tree[i] = op(tree[2 * i], tree[2 * i + 1]);
-    }
+	SegmentTree(vector<T> v, int n, T id, F op): n(n), id(id), op(op) {
+		for (tree_offset = 1; tree_offset < n; tree_offset *= 2);
+		tree.assign(2 * tree_offset, id);
+		for (int i = 0; i < n; ++i) {
+			tree[i + tree_offset] = v[i];
+		}
+		for (int i = tree_offset - 1; i >= 1; --i) {
+			pull(i);
+		}
+	}
+	
+	void pull(int i) {
+		tree[i] = op(tree[2 * i], tree[2 * i + 1]);
+	}
 
-    T get(int i) {
-        assert(0 <= i && i < n);
-        return tree[i + tree_offset];
-    }
+	T get(int i) {
+		assert(0 <= i && i < n);
+		return tree[i + tree_offset];
+	}
 
-    void update(int i, T x) {
-        assert(0 <= i && i < n);
-        tree[i += tree_offset] = x;
-        for (i /= 2; i > 0; i /= 2) {
-            pull(i);
-        }
-    }
+	void update(int i, T x) {
+		assert(0 <= i && i < n);
+		tree[i += tree_offset] = x;
+		for (i /= 2; i > 0; i /= 2) {
+			pull(i);
+		}
+	}
 
-    T query_all() {
-        return tree[1];
-    }
+	T query_all() {
+		return tree[1];
+	}
 
-    T query(int l, int r) {
-        assert(0 <= l && l <= r && r < n);
-        T left = id, right = id;
-        for (l += tree_offset, r += tree_offset + 1; l < r; l /= 2, r /= 2) {
-            if (l % 2 == 1) {
-                left = op(left, tree[l++]);
-            }
-            if (r % 2 == 1) {
-                right = op(tree[--r], right);
-            }
-        }
-        return op(left, right);
-    }
+	T query(int l, int r) {
+		assert(0 <= l && l <= r && r < n);
+		T left = id, right = id;
+		for (l += tree_offset, r += tree_offset + 1; l < r; l /= 2, r /= 2) {
+			if (l % 2 == 1) {
+				left = op(left, tree[l++]);
+			}
+			if (r % 2 == 1) {
+				right = op(tree[--r], right);
+			}
+		}
+		return op(left, right);
+	}
 
 };
 ```
