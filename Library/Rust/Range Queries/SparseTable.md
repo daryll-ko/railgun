@@ -33,39 +33,39 @@ Returns the minimum value among $v[l], v[l + 1], \dots, v[r]$.
 // returns the position of the most significant bit of n
 // (i.e., the largest i such that 2^i ≤ n)
 fn msb(n: usize) -> usize {
-    let mut exponent = 0;
-    while (1 << exponent) <= n {
-        exponent += 1;
-    }
-    exponent - 1
+	let mut exponent = 0;
+	while (1 << exponent) <= n {
+		exponent += 1;
+	}
+	exponent - 1
 }
 
 struct SparseTable {
-    table: Vec<Vec<i64>>,
+	table: Vec<Vec<i64>>,
 }
 
 impl SparseTable {
-    fn new(v: &[i64], n: usize) -> SparseTable {
-        let m = msb(n);
-        let mut table = vec![vec![0; n]; m + 1];
-        for j in 0..n {
-            table[0][j] = v[j];
-        }
-        for i in 1..=m {
-            for j in 0..n {
-                table[i][j] = table[i - 1][j];
-                if j + (1 << (i - 1)) < n {
-                    table[i][j] = table[i][j].min(table[i - 1][j + (1 << (i - 1))]);
-                }
-            }
-        }
-        SparseTable { table }
-    }
-    fn query(&self, l: usize, r: usize) -> i64 {
-        let b = msb(r - l + 1);
-        let answer = self.table[b][l].min(self.table[b][r + 1 - (1 << b)]);
-        answer
-    }
+	fn new(v: &[i64], n: usize) -> SparseTable {
+		let m = msb(n);
+		let mut table = vec![vec![0; n]; m + 1];
+		for j in 0..n {
+			table[0][j] = v[j];
+		}
+		for i in 1..=m {
+			for j in 0..n {
+				table[i][j] = table[i - 1][j];
+				if j + (1 << (i - 1)) < n {
+					table[i][j] = table[i][j].min(table[i - 1][j + (1 << (i - 1))]);
+				}
+			}
+		}
+		SparseTable { table }
+	}
+	fn query(&self, l: usize, r: usize) -> i64 {
+		let b = msb(r - l + 1);
+		let answer = self.table[b][l].min(self.table[b][r + 1 - (1 << b)]);
+		answer
+	}
 }
 ```
 

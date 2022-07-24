@@ -11,42 +11,42 @@ Given a vector $v$ of length $n$ and a mutable variable `answer`, returns the so
 ## Code
 ```rust
 fn merge(a: &[i64], b: &[i64], answer: &mut usize) -> Vec<i64> {
-    let mut result: Vec<i64> = vec![];
-    let mut i = 0;
-    let mut j = 0;
-    while i < a.len() && j < b.len() {
-        if a[i] <= b[j] {
-            *answer += j;
-            result.push(a[i]);
-            i += 1;
-        } else {
-            result.push(b[j]);
-            j += 1;
-        }
-    }
-    while i < a.len() {
-        *answer += j;
-        result.push(a[i]);
-        i += 1;
-    }
-    while j < b.len() {
-        result.push(b[j]);
-        j += 1;
-    }
-    result
+	let mut result: Vec<i64> = vec![];
+	let mut i = 0;
+	let mut j = 0;
+	while i < a.len() && j < b.len() {
+		if a[i] <= b[j] {
+			*answer += j;
+			result.push(a[i]);
+			i += 1;
+		} else {
+			result.push(b[j]);
+			j += 1;
+		}
+	}
+	while i < a.len() {
+		*answer += j;
+		result.push(a[i]);
+		i += 1;
+	}
+	while j < b.len() {
+		result.push(b[j]);
+		j += 1;
+	}
+	result
 }
 
 fn merge_sort(v: &[i64], answer: &mut usize) -> Vec<i64> {
-    let n = v.len();
-    if n == 1 {
-        v.to_vec()
-    } else {
-        merge(
-            &merge_sort(&v[..(n / 2)], answer),
-            &merge_sort(&v[(n / 2)..], answer),
-            answer,
-        )
-    }
+	let n = v.len();
+	if n == 1 {
+		v.to_vec()
+	} else {
+		merge(
+			&merge_sort(&v[..(n / 2)], answer),
+			&merge_sort(&v[(n / 2)..], answer),
+			answer,
+		)
+	}
 }
 ```
 

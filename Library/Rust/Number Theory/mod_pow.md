@@ -11,15 +11,15 @@ Given $a$, $b$, and $m$, computes $a^{b}~(\text{mod}~m)$.
 ## Code
 ```rust
 fn mod_pow(mut a: i64, mut b: i64, m: i64) -> i64 {
-    let mut answer = 1;
-    while b > 0 {
-        if b % 2 == 1 {
-            answer = (answer * a) % m;
-        }
-        b /= 2;
-        a = (a * a) % m;
-    }
-    answer
+	let mut answer = 1;
+	while b > 0 {
+		if b % 2 == 1 {
+			answer = (answer * a) % m;
+		}
+		b /= 2;
+		a = (a * a) % m;
+	}
+	answer
 }
 ```
 

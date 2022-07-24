@@ -89,60 +89,60 @@ If we treat $v$ as a multiset $S$ which contains the counts of numbers $1$ throu
 ## Code
 ```rust
 fn lsb(n: usize) -> usize {
-    (n as i32 & -(n as i32)) as usize
+	(n as i32 & -(n as i32)) as usize
 }
 
 struct FenwickTree {
-    n: usize,
-    tree: Vec<i64>,
+	n: usize,
+	tree: Vec<i64>,
 }
 
 impl FenwickTree {
-    fn new(v: &[i64], n: usize) -> FenwickTree {
-        let mut tree = vec![0; n + 1];
-        for i in 1..=n {
-            tree[i] = v[i - 1];
-            let mut j = lsb(i) >> 1;
-            while j > 0 {
-                tree[i] += tree[i - j];
-                j >>= 1;
-            }
-        }
-        FenwickTree { n, tree }
-    }
-    fn add(&mut self, mut i: usize, x: i64) {
-        while i <= self.n {
-            self.tree[i] += x;
-            i += lsb(i);
-        }
-    }
-    fn update(&mut self, i: usize, x: i64) {
-        let previous_value = self.query(i, i);
-        self.add(i, x - previous_value);
-    }
-    fn prefix_query(&self, mut r: usize) -> i64 {
-        let mut sum = 0;
-        while r > 0 {
-            sum += self.tree[r];
-            r -= lsb(r);
-        }
-        sum
-    }
-    fn query(&self, l: usize, r: usize) -> i64 {
-        self.prefix_query(r) - self.prefix_query(l - 1)
-    }
-    fn cumulative_lower_bound(&self, mut sum: i64) -> usize {
-        let mut position = 0;
-        let mut power = 1 << 23;
-        while power > 0 {
-            if position + power <= self.n && self.tree[position + power] < sum {
-                position += power;
-                sum -= self.tree[position];
-            }
-            power >>= 1;
-        }
-        position + 1
-    }
+	fn new(v: &[i64], n: usize) -> FenwickTree {
+		let mut tree = vec![0; n + 1];
+		for i in 1..=n {
+			tree[i] = v[i - 1];
+			let mut j = lsb(i) >> 1;
+			while j > 0 {
+				tree[i] += tree[i - j];
+				j >>= 1;
+			}
+		}
+		FenwickTree { n, tree }
+	}
+	fn add(&mut self, mut i: usize, x: i64) {
+		while i <= self.n {
+			self.tree[i] += x;
+			i += lsb(i);
+		}
+	}
+	fn update(&mut self, i: usize, x: i64) {
+		let previous_value = self.query(i, i);
+		self.add(i, x - previous_value);
+	}
+	fn prefix_query(&self, mut r: usize) -> i64 {
+		let mut sum = 0;
+		while r > 0 {
+			sum += self.tree[r];
+			r -= lsb(r);
+		}
+		sum
+	}
+	fn query(&self, l: usize, r: usize) -> i64 {
+		self.prefix_query(r) - self.prefix_query(l - 1)
+	}
+	fn cumulative_lower_bound(&self, mut sum: i64) -> usize {
+		let mut position = 0;
+		let mut power = 1 << 23;
+		while power > 0 {
+			if position + power <= self.n && self.tree[position + power] < sum {
+				position += power;
+				sum -= self.tree[position];
+			}
+			power >>= 1;
+		}
+		position + 1
+	}
 }
 ```
 

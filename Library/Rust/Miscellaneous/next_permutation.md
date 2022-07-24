@@ -9,33 +9,33 @@ The elements of the slice may be any type `T` that implements the `Ord` trait.
 ```rust
 fn next_permutation<T>(v: &mut [T]) -> bool
 where
-    T: std::cmp::Ord,
+	T: std::cmp::Ord,
 {
-    use std::cmp::Ordering;
+	use std::cmp::Ordering;
 
-    let n = v.len();
-    let mut j = n;
-    for i in (1..n).rev() {
-        if v[i - 1] < v[i] {
-            j = i - 1;
-            break;
-        }
-    }
+	let n = v.len();
+	let mut j = n;
+	for i in (1..n).rev() {
+		if v[i - 1] < v[i] {
+			j = i - 1;
+			break;
+		}
+	}
 
-    if j == n {
-        v.reverse();
-        return false;
-    }
+	if j == n {
+		v.reverse();
+		return false;
+	}
 
-    let k = v[(j + 1)..]
-        .binary_search_by(|n| match v[j].cmp(n) {
-            Ordering::Equal => Ordering::Greater,
-            ord => ord,
-        })
-        .unwrap_err();
-    v.swap(j, j + k);
-    v[(j + 1)..].reverse();
-    true
+	let k = v[(j + 1)..]
+		.binary_search_by(|n| match v[j].cmp(n) {
+			Ordering::Equal => Ordering::Greater,
+			ord => ord,
+		})
+		.unwrap_err();
+	v.swap(j, j + k);
+	v[(j + 1)..].reverse();
+	true
 }
 ```
 
@@ -43,10 +43,10 @@ where
 ```rust
 let mut v = vec![1, 2, 3];
 loop {
-    println!("{:?}", v);
-    if !next_permutation(&mut v) {
-        break;
-    }
+	println!("{:?}", v);
+	if !next_permutation(&mut v) {
+		break;
+	}
 }
 // outputs:
 //    [1, 2, 3]

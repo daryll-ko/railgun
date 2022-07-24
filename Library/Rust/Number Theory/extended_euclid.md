@@ -40,21 +40,21 @@ Returns the smallest positive integer $x$ such that $ax \equiv 1~(\text{mod}~b)$
 ## Code
 ```rust
 fn extended_euclid(a: i64, b: i64) -> (i64, i64) {
-    if b == 0 {
-        (1, 0)
-    } else {
-        let (x, y) = extended_euclid(b, a % b);
-        (y, x - (a / b) * y)
-    }
+	if b == 0 {
+		(1, 0)
+	} else {
+		let (x, y) = extended_euclid(b, a % b);
+		(y, x - (a / b) * y)
+	}
 }
 
 fn get_inverse(a: i64, b: i64) -> i64 {
-    let (x, _) = extended_euclid(a, b);
-    if x >= 0 {
-        x
-    } else {
-        x + b
-    }
+	let (x, _) = extended_euclid(a, b);
+	if x >= 0 {
+		x
+	} else {
+		x + b
+	}
 }
 ```
 

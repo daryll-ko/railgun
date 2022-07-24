@@ -11,15 +11,15 @@ Given an array $A$ and its length $n$, sorts $A$ in-place.
 ## Code
 ```rust
 fn insertion_sort(a: &mut [i32], n: usize) {
-    for i in 1..n {
-        let value = a[i];
-        let mut j = i;
-        while j > 0 && a[j - 1] > value {
-            a[j] = a[j - 1];
-            j -= 1;
-        }
-        a[j] = value;
-    }
+	for i in 1..n {
+		let value = a[i];
+		let mut j = i;
+		while j > 0 && a[j - 1] > value {
+			a[j] = a[j - 1];
+			j -= 1;
+		}
+		a[j] = value;
+	}
 }
 ```
 

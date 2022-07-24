@@ -106,73 +106,73 @@ Returns $op(v[l], v[l + 1], \dots, v[r])$.
 
 ```rust
 struct SegmentTree<T> {
-    n: usize,
-    tree_offset: usize,
-    tree: Vec<T>,
-    id: T,
-    op: fn(&T, &T) -> T,
+	n: usize,
+	tree_offset: usize,
+	tree: Vec<T>,
+	id: T,
+	op: fn(&T, &T) -> T,
 }
 
 impl<T: Clone> SegmentTree<T> {
-    fn new(v: &[T], n: usize, id: T, op: fn(&T, &T) -> T) -> SegmentTree<T> {
-        let mut tree_offset = 1;
-        while tree_offset < n {
-            tree_offset *= 2;
-        }
-        let mut tree = vec![id.clone(); 2 * tree_offset];
-        for i in 0..n {
-            tree[i + tree_offset] = v[i].clone();
-        }
-        for i in (1..tree_offset).rev() {
-            tree[i] = op(&tree[2 * i], &tree[2 * i + 1]);
-        }
-        SegmentTree {
-            n,
-            tree_offset,
-            tree,
-            id,
-            op,
-        }
-    }
-    fn pull(&mut self, i: usize) {
-        self.tree[i] = (self.op)(&self.tree[2 * i], &self.tree[2 * i + 1]);
-    }
-    fn get(&self, i: usize) -> T {
-        assert!(i < self.n);
-        self.tree[i + self.tree_offset].clone()
-    }
-    fn set(&mut self, mut i: usize, x: T) {
-        assert!(i < self.n);
-        self.tree[i + self.tree_offset] = x;
-        i = (i + self.tree_offset) / 2;
-        while i > 0 {
-            self.pull(i);
-            i /= 2;
-        }
-    }
-    fn query_all(&self) -> T {
-        self.tree[1].clone()
-    }
-    fn query(&self, mut l: usize, mut r: usize) -> T {
-        assert!(l <= r && r < self.n);
-        let mut left = self.id.clone();
-        let mut right = self.id.clone();
-        l += self.tree_offset;
-        r += self.tree_offset + 1;
-        while l < r {
-            if l % 2 == 1 {
-                left = (self.op)(&left, &self.tree[l]);
-                l += 1;
-            }
-            if r % 2 == 1 {
-                r -= 1;
-                right = (self.op)(&self.tree[r], &right);
-            }
-            l /= 2;
-            r /= 2;
-        }
-        (self.op)(&left, &right)
-    }
+	fn new(v: &[T], n: usize, id: T, op: fn(&T, &T) -> T) -> SegmentTree<T> {
+		let mut tree_offset = 1;
+		while tree_offset < n {
+			tree_offset *= 2;
+		}
+		let mut tree = vec![id.clone(); 2 * tree_offset];
+		for i in 0..n {
+			tree[i + tree_offset] = v[i].clone();
+		}
+		for i in (1..tree_offset).rev() {
+			tree[i] = op(&tree[2 * i], &tree[2 * i + 1]);
+		}
+		SegmentTree {
+			n,
+			tree_offset,
+			tree,
+			id,
+			op,
+		}
+	}
+	fn pull(&mut self, i: usize) {
+		self.tree[i] = (self.op)(&self.tree[2 * i], &self.tree[2 * i + 1]);
+	}
+	fn get(&self, i: usize) -> T {
+		assert!(i < self.n);
+		self.tree[i + self.tree_offset].clone()
+	}
+	fn set(&mut self, mut i: usize, x: T) {
+		assert!(i < self.n);
+		self.tree[i + self.tree_offset] = x;
+		i = (i + self.tree_offset) / 2;
+		while i > 0 {
+			self.pull(i);
+			i /= 2;
+		}
+	}
+	fn query_all(&self) -> T {
+		self.tree[1].clone()
+	}
+	fn query(&self, mut l: usize, mut r: usize) -> T {
+		assert!(l <= r && r < self.n);
+		let mut left = self.id.clone();
+		let mut right = self.id.clone();
+		l += self.tree_offset;
+		r += self.tree_offset + 1;
+		while l < r {
+			if l % 2 == 1 {
+				left = (self.op)(&left, &self.tree[l]);
+				l += 1;
+			}
+			if r % 2 == 1 {
+				r -= 1;
+				right = (self.op)(&self.tree[r], &right);
+			}
+			l /= 2;
+			r /= 2;
+		}
+		(self.op)(&left, &right)
+	}
 }
 ```
 
