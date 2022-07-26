@@ -13,7 +13,7 @@ $$
 \begin{align}
 x & \equiv r_{1}~(\text{mod}~m_{1}) \\
 x & \equiv r_{2}~(\text{mod}~m_{2}) \\
-&~~\vdots \\
+& \vdots \\
 x & \equiv r_{n}~(\text{mod}~m_{n}).
 \end{align}
 $$
