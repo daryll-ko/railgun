@@ -25,7 +25,7 @@ If a solution for $x$ exists, returns $(x, \text{lcm}(m_{1}, m_{2}, \dots, m_{n}
 - $m_{i} \ge 1$ for $1 \le i \le n$
 
 **Time Complexity**
-- $n \log \text{lcm}(m_{1}, m_{2}, \dots, m_{n})$
+- $O(n \log \text{lcm}(m_{1}, m_{2}, \dots, m_{n}))$
 
 ## Code
 ```rust
