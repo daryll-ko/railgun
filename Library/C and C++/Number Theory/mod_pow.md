@@ -9,15 +9,33 @@ Given $a$, $b$, and $m$, computes $a^{b}~(\text{mod}~m)$.
 - $O(\log b)$
 
 ## Code
+### C
 ```c
 long mod_pow(long a, long b, long m) {
-  long answer = 1;
-  for (; b > 0; b /= 2, a = (a * a) % m) {
-	if (b % 2 == 1) {
-	  answer = (answer * a) % m;
+	long answer = 1;
+	for (; b > 0; b /= 2, a = (a * a) % m) {
+		if (b % 2 == 1) {
+			answer = (answer * a) % m;
+		}
 	}
-  }
-  return answer;
+	return answer;
+}
+```
+
+### C++
+```cpp
+using i64 = int64_t;
+```
+
+```cpp
+i64 mod_pow(i64 a, i64 b, i64 m) {
+	i64 answer = 1;
+	for (; b > 0; b /= 2, a = (a * a) % m) {
+		if (b % 2 == 1) {
+			answer = (answer * a) % m;
+		}
+	}
+	return answer;
 }
 ```
 
