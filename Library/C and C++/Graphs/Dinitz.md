@@ -10,7 +10,7 @@ Dinitz(int n)
 Initializes a flow network with $n$ vertices.
 
 **Constraints**
-- $n \le 500$ (depends on the number of edges, but this is a relatively safe bound)
+- $n \le 100$ (depends on the number of edges, but this is a relatively safe bound)
 
 **Time Complexity**
 - $O(n)$
