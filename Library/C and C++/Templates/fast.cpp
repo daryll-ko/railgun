@@ -4,6 +4,8 @@ using namespace std;
 
 #pragma GCC optimize("Ofast")
 
+using i64 = int64_t;
+
 namespace fast_input {
 	const int buffer_size = 1 << 15;
 	char input_buffer[buffer_size];
@@ -96,9 +98,13 @@ namespace fast_output {
 	}
 }
 
+// start of solution
+
 int main() {
 	using namespace fast_input;
 	using namespace fast_output;
 	initialize();
 	
 }
+
+// end of solution
