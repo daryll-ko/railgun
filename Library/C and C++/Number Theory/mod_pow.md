@@ -50,7 +50,6 @@ printf("%d\n", mod_pow(2022, 2022, MOD));
 ```
 
 ## Notes
-- replace `long` with `long long` when using C++ instead of C
 - `mod_pow` is built-in for Python as `pow(a, b, m)`.
 
 ## Verification
