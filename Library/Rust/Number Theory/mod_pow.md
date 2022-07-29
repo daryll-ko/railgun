@@ -37,5 +37,5 @@ println!("{}", mod_pow(10, 9, MOD));
 - `mod_pow` is built-in for Python as `pow(a, b, m)`.
 
 ## Verification
-- [Exponentiation](https://cses.fi/problemset/task/1095/)
-- [Exponentiation II](https://cses.fi/problemset/task/1712/)
+- [CSES Problem Set | Exponentiation](https://cses.fi/problemset/task/1095/)
+- [CSES Problem Set | Exponentiation II](https://cses.fi/problemset/task/1712/)
