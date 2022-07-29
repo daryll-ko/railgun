@@ -92,3 +92,4 @@ println!("{}", is_prime(c));
 - [KACTL](https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/MillerRabin.h)
 
 ## Verification
+- [Project Euler](https://projecteuler.net/)
