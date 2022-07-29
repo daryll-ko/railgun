@@ -9,7 +9,6 @@ Given $a$, $b$, and $m$, computes $a^{b}~(\text{mod}~m)$.
 - $O(\log b)$
 
 ## Code
-### C++
 ```cpp
 using i64 = int64_t;
 ```
