@@ -26,8 +26,8 @@ i64 mod_pow(i64 a, i64 b, i64 m) {
 ```
 
 ## Example
-```c
-const long MOD = 998244353;
+```cpp
+const i64 MOD = 998244353;
 
 printf("%d\n", mod_pow(2022, 2022, MOD));
 // 10^9 = 1_000_000_000
