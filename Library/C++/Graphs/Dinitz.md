@@ -42,6 +42,9 @@ Returns the flow through the edge $\verb|edge|$.
 - `edge` is a return value from an `add_edge` call
 - `compute_flow` has been called
 
+**Time Complexity**
+- $O(1)$
+
 ### `compute_flow`
 ```cpp
 F compute_flow(int s, int t)
