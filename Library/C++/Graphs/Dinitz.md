@@ -15,6 +15,33 @@ Initializes a flow network with $n$ vertices.
 **Time Complexity**
 - $O(n)$
 
+### `add_edge`
+```cpp
+pair<int, int> add_edge(int u, int v, F capacity, F reverse_capacity = 0)
+```
+
+Adds the edge $(u, v)$ with capacity $\verb|capacity|$ to the flow network.
+
+Returns information about the added edge, which can be used for a call to `compute_cut` later.
+
+**Constraints**
+- $0 \le u, v < n$
+- $u \ne v$
+
+**Time Complexity**
+- $O(1)$
+
+### `get_flow`
+```cpp
+F get_flow(pair<int, int> edge)
+```
+
+Returns the flow through the edge $\verb|edge|$.
+
+**Constraints**
+- `edge` is a return value from an `add_edge` call
+- `compute_flow` has been called
+
 ### `compute_flow`
 ```cpp
 F compute_flow(int s, int t)
@@ -25,6 +52,20 @@ Computes the maximum flow from the source $s$ to the sink $t$.
 **Time Complexity**
 - $O(n^{2}m)$ in general
 - $O(\min(n^{2/3}m, m^{3/2}))$ if all capacities are $1$
+
+### `compute_cut`
+```cpp
+vector<pair<int, int>> compute_cut(vector<pair<int, int>> edges)
+```
+
+Computes the minimum cut of the flow network.
+
+**Constraints**
+- `edges` is the vector that contains all returned values from all `add_edge` calls
+- `compute_flow` has been called
+
+**Time Complexity**
+- $O(m)$
 
 ## Code
 ```cpp
@@ -50,7 +91,7 @@ struct Dinitz {
 		assert(min(capacity, reverse_capacity) >= 0);
 		a[u].push_back({v, (int)a[v].size(), capacity});
 		a[v].push_back({u, (int)a[u].size() - 1, reverse_capacity});
-		return make_pair(v, (int)a[v].size() - 1);
+		return make_pair(u, (int)a[u].size() - 1);
 	}
 
 	F get_flow(pair<int, int> edge) {
@@ -111,6 +152,17 @@ struct Dinitz {
 		}
 		return flow;
 	}
+
+	vector<pair<int, int>> compute_cut(vector<pair<int, int>> edges) {
+		vector<pair<int, int>> answer;
+		for (auto& [u, index] : edges) {
+			auto e = a[u][index];
+			if (level[u] != 0 && level[e.v] == 0 && e.capacity == 0) {
+				answer.emplace_back(u, e.v);
+			}
+		}
+		return answer;
+	}
 };
 ```
 
@@ -121,13 +173,11 @@ struct Dinitz {
 
 ## Notes
 - unless the constraints are glaringly large, just assume that `compute_flow`'s complexity is $O(\verb|passes time limit|)$
-- once `compute_flow` has been called, the **minimum cut** consists of all edges `e = a[u][_]` such that:
-	- `level[u] != 0`
-	- `level[e.v] == 0`
-	- `e.capacity == 0`
 
 ## References
 - [Benjamin Qi's implementation](https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Flows%20(12.3)/Dinic.h)
 - [Maximum flow - Dinic's algorithm | Algorithms for Competitive Programming](https://cp-algorithms.web.app/graph/dinic.html)
 
 ## Verification
+- [CSES Problem Set | Download Speed](https://cses.fi/problemset/task/1694)
+- [CSES Problem Set | Police Chase](https://cses.fi/problemset/task/1695)
