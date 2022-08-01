@@ -57,7 +57,7 @@ struct SparseTable {
 		this->table = table;
 	}
 
-	int query(int l, int r) {
+	T query(int l, int r) {
 		int b = msb(r - l + 1);
 		return min(table[b][l], table[b][r + 1 - (1 << b)]);
 	}
