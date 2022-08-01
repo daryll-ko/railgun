@@ -3,7 +3,7 @@ Implementation of a [sparse table](https://brilliant.org/wiki/sparse-table/#:~:t
 
 ## Methods
 ### `SparseTable`
-```rust
+```cpp
 SparseTable(vector<T> v, int n)
 ```
 
@@ -16,8 +16,8 @@ Constructs a sparse table for the vector $v$ with length $n$.
 - $O(n \log n)$
 
 ### `query`
-```rust
-int query(int l, int r)
+```cpp
+T query(int l, int r)
 ```
 
 Returns the minimum value among $v[l], v[l + 1], \dots, v[r]$.
